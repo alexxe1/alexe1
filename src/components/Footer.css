@@ -1,0 +1,14 @@
+footer {
+  background-color: var(--black);
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 18vh;
+  box-shadow: 0 0 10px var(--black);
+  z-index: 100;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}

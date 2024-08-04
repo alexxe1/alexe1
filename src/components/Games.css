@@ -1,0 +1,18 @@
+#games {
+  width: 100vw;
+  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  overflow-y: auto;
+}
+
+.games-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  width: 100%;
+  justify-items: center;
+  margin-top: 300px; 
+  margin-bottom: 200px;
+}

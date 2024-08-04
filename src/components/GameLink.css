@@ -1,0 +1,45 @@
+.game-link {
+  position: relative;
+  background-color: var(--black);
+  border-radius: 20px;
+  box-shadow: 0 0 10px var(--gray);
+  width: 20%;
+  aspect-ratio: 1.8 / 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  font-family: default-bold;
+  font-size: 1.8rem;
+  text-decoration: none;
+  transition: transform 0.1s;
+  overflow: hidden;
+}
+
+.game-link::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game-link:hover {
+  transform: scale(1.1);
+}
+
+.game-link.itchio::before {
+  background-image: url('src/assets/images/itchio.png');
+}
+
+.game-link.playstore::before {
+  background-image: url('src/assets/images/playstore.png');
+}
+
+.game-link.gamejolt::before {
+  background-image: url('src/assets/images/gamejolt.png');
+}

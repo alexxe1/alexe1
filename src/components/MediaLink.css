@@ -1,0 +1,14 @@
+.media-link-icon {
+  height: 80px;
+  width: 80px;
+  display: inline-block;
+  fill: var(--white);
+}
+
+.media-link-icon path {
+  transition: fill 0.05s;
+}
+
+.media-link-icon:hover path {
+  fill: var(--light-blue);
+}

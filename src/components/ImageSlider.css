@@ -1,0 +1,49 @@
+.image-slider {
+  width: 35%;
+  aspect-ratio: 16/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.image-slider__button {
+  background-color: transparent;
+  border: none;
+  font-size: 4rem;
+  color: var(--black);
+  cursor: pointer;
+  transition: transform 0.1s;
+  width: 5%;
+  position: relative;
+  background-color: red;
+}
+
+.image-slider__button:hover {
+  transform: scale(1.3);
+}
+
+.image-slider__image {
+  flex-grow: 1;
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px var(--black);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
+  position: relative;
+}
+
+.image-slider .image-changed {
+  animation: image-changed 0.3s ease-in-out;
+}
+
+@keyframes image-changed {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}

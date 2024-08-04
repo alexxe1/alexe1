@@ -1,0 +1,33 @@
+.link-section {
+  width: 28%;
+  aspect-ratio: 2 / 1.2;
+  border-radius: 20px;
+  background-color: var(--black);
+  text-decoration: none;
+  color: var(--white);
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  transition: transform 0.1s, color 0.1s;
+  box-shadow: 0 0 10px var(--black);
+}
+
+.link-section:hover {
+  transform: scale(1.1);
+  color: var(--light-blue);
+}
+
+.link-section > span {
+  position: absolute;
+  bottom: 0px;
+  left: 30px;
+  font-size: 5rem;
+}
+
+.link-section > img {
+  position: absolute;
+  width: 25%;
+  top: 30px;
+  right: 30px;
+  aspect-ratio: 1/1;
+}

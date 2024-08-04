@@ -1,0 +1,27 @@
+#about {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+
+.about__info {
+  width: 35%;
+}
+
+.about__title {
+  margin: 0;
+  color: var(--light-blue);
+  font-size: 6rem;
+  text-align: center;
+  font-family: default-bold;
+}
+
+.about__info > p {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
+}

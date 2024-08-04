@@ -1,0 +1,14 @@
+.game {
+  width: 90%;
+  max-width: 500px;
+  aspect-ratio: 2/1.2;
+  border-radius: 20px;
+  box-shadow: 0 0 10px var(--black);
+  transition: transform 0.1s;
+  background-position: center;
+  background-size: cover;
+}
+
+.game:hover {
+  transform: scale(1.05);
+}
