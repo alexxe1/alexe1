@@ -1,14 +1,21 @@
 import "./SectionLink.css";
+import { scrollToSection } from "../functions/scrollToSection";
 
 interface LinkSectionProps {
-  href: string;
+  elementId: string;
   text: string;
   imagePath: string;
 }
 
-export function LinkSection({ href, text, imagePath }: LinkSectionProps) {
+export function LinkSection({ elementId, text, imagePath }: LinkSectionProps) {
+  const handleClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    scrollToSection(event, elementId);
+  };
+
   return (
-    <a className="link-section" href={href}>
+    <a href="#" onClick={handleClick} className="link-section">
       <span>{text}</span>
       <img src={imagePath} alt="Icon" />
     </a>

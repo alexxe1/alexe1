@@ -10,6 +10,7 @@
   overflow: hidden;
   transition: transform 0.1s, color 0.1s;
   box-shadow: 0 0 10px var(--black);
+  cursor: pointer;
 }
 
 .link-section:hover {
