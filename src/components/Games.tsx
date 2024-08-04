@@ -7,12 +7,12 @@ export function Games() {
       <div className="games-container">
         <Game
           to="/krypto"
-          imagePath="src/assets/images/games/krypto/krypto.jpg"
+          imagePath="/src/assets/images/games/krypto/krypto.jpg"
         />
 
         <Game
           to="/thenorisproject"
-          imagePath="src/assets/images/games/tnp/tnp.png"
+          imagePath="/src/assets/images/games/tnp/tnp.png"
         />
       </div>
     </section>

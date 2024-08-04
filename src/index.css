@@ -26,12 +26,12 @@ body {
 
 @font-face {
   font-family: default-bold;
-  src: url('src/assets/fonts/default_bold.woff2') format('woff2');
+  src: url('/src/assets/fonts/default_bold.woff2') format('woff2');
 }
 
 @font-face {
   font-family: default-normal;
-  src: url('src/assets/fonts/default_normal.woff2') format('woff2');
+  src: url('/src/assets/fonts/default_normal.woff2') format('woff2');
 }
 
 @media screen and (0px <= width <= 360px) {

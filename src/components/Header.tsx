@@ -16,7 +16,7 @@ export function Header() {
         onClick={handleClick}
         style={{ cursor: "pointer" }}
       >
-        <img src="src/assets/images/alexe1.ico" alt="Alexe1 Icon" />
+        <img src="/src/assets/images/alexe1.ico" alt="Alexe1 Icon" />
       </div>
     </header>
   );
