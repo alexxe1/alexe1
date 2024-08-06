@@ -1,16 +1,13 @@
+import { imagesPath } from "../constants";
 import "./Home.css";
 import { LinkSection } from "./SectionLink";
 
 export function Home() {
-  const contactPath: string = "/src/assets/images/contact.png";
-  const gamesPath: string = "/src/assets/images/games.png";
-  const aboutPath: string = "/src/assets/images/about.png";
-
   return (
     <section id="home">
-      <LinkSection elementId="contact" text="Contact" imagePath={contactPath} />
-      <LinkSection elementId="games" text="Games" imagePath={gamesPath} />
-      <LinkSection elementId="about" text="About" imagePath={aboutPath} />
+      <LinkSection elementId="contact" text="Contact" imagePath={imagesPath.contact} />
+      <LinkSection elementId="games" text="Games" imagePath={imagesPath.games} />
+      <LinkSection elementId="about" text="About" imagePath={imagesPath.about} />
     </section>
   );
 }
