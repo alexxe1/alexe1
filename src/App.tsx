@@ -7,7 +7,7 @@ import React, { Suspense } from "react";
 const LazyGameInfo = React.lazy(() => import("./components/GameInfo"));
 
 function App() {
-  console.log("page version: 1.1");
+  console.log("page version: 1.3");
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
