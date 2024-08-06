@@ -9,7 +9,7 @@ export function Privacy({ name }: PrivacyProps) {
   const { privacyText, name: gameName } = games[name];
 
   return (
-    <div className="privacy-page-game-info-wrapper">
+    <div className="privacy-page-wrapper">
       <section className="privacy-page">
         <h2>{gameName} Privacy Policy</h2>
         <pre>{privacyText}</pre>

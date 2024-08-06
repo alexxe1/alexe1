@@ -33,13 +33,13 @@
 }
 
 .game-link.itchio::before {
-  background-image: url('src/assets/images/itchio.png');
+  background-image: url('/src/assets/images/itchio.png');
 }
 
 .game-link.playstore::before {
-  background-image: url('src/assets/images/playstore.png');
+  background-image: url('/src/assets/images/playstore.png');
 }
 
 .game-link.gamejolt::before {
-  background-image: url('src/assets/images/gamejolt.png');
+  background-image: url('/src/assets/images/gamejolt.png');
 }

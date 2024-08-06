@@ -4,7 +4,7 @@ import { ImageSlider } from "./ImageSlider";
 import { games } from "../constants";
 import { GameLink } from "./GameLink";
 
-export function GameInfo({ name }: { name: string }) {
+function GameInfo({ name }: { name: string }) {
   const game = games[name.toLowerCase()];
   if (!game) return <p>Game not found</p>;
 
@@ -44,3 +44,5 @@ export function GameInfo({ name }: { name: string }) {
     </div>
   );
 }
+
+export default GameInfo
