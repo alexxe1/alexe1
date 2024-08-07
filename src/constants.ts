@@ -93,13 +93,14 @@ export const games: GameInfoProps = {
 };
 
 export const imagesPath = {
-  contact: "src/assets/images/contact.png",
-  games: "src/assets/images/games.png",
-  about: "src/assets/images/about.png",
-  alexe1: "/alexe1/assets/alexe1-D9T3LakQ.ico",
-  tnp: "src/assets/images/games/tnp/tnp.png",
-  krypto: "src/assets/images/games/krypto/krypto.jpg",
-  sendIcon: "src/assets/images/send.png",
-  emailIcon: "src/assets/images/email.png",
-  nameIcon: "src/assets/images/name.png",
+  contact: new URL("src/assets/images/contact.png", import.meta.url).href,
+  games: new URL("src/assets/images/games.png", import.meta.url).href,
+  about: new URL("src/assets/images/about.png", import.meta.url).href,
+  alexe1: new URL("src/assets/alexe1-D9T3LakQ.ico", import.meta.url).href,
+  tnp: new URL("src/assets/images/games/tnp/tnp.png", import.meta.url).href,
+  krypto: new URL("src/assets/images/games/krypto/krypto.jpg", import.meta.url)
+    .href,
+  sendIcon: new URL("src/assets/images/send.png", import.meta.url).href,
+  emailIcon: new URL("src/assets/images/email.png", import.meta.url).href,
+  nameIcon: new URL("src/assets/images/name.png", import.meta.url).href,
 };
