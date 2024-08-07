@@ -96,7 +96,7 @@ export const imagesPath = {
   contact: new URL("src/assets/images/contact.png", import.meta.url).href,
   games: new URL("src/assets/images/games.png", import.meta.url).href,
   about: new URL("src/assets/images/about.png", import.meta.url).href,
-  alexe1: new URL("src/assets/alexe1-D9T3LakQ.ico", import.meta.url).href,
+  alexe1: new URL("/alexe1/assets/alexe1-D9T3LakQ.ico", import.meta.url).href,
   tnp: new URL("src/assets/images/games/tnp/tnp.png", import.meta.url).href,
   krypto: new URL("src/assets/images/games/krypto/krypto.jpg", import.meta.url)
     .href,
