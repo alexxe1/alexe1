@@ -1,4 +1,3 @@
-import { imagesPath } from "../constants";
 import "./Contact.css";
 
 export function Contact() {
@@ -9,12 +8,12 @@ export function Contact() {
     <section id="contact">
       <form className="contact__form" action={formAction} method="POST">
         <div className="contact__form__name">
-          <img src={imagesPath.nameIcon} alt="Name" />
+          <img src="src/assets/images/name.png" alt="Name" />
           <input type="text" placeholder="Name" name="name" required />
         </div>
 
         <div className="contact__form__email">
-          <img src={imagesPath.emailIcon} alt="Email" />
+          <img src="src/assets/images/email.png" alt="Email" />
           <input type="email" placeholder="Email" name="email" required />
         </div>
 
@@ -25,7 +24,7 @@ export function Contact() {
           required
         />
         <div className="contact__form__send">
-          <img src={imagesPath.sendIcon} alt="Send" />
+          <img src="src/assets/images/send.png" alt="Send" />
           <input type="submit" value="" />
         </div>
       </form>

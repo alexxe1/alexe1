@@ -1,4 +1,4 @@
-import { imagesPath } from "../constants";
+import { images } from "../constants";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export function Header() {
         onClick={handleClick}
         style={{ cursor: "pointer" }}
       >
-        <img src={imagesPath.alexe1} alt="Alexe1 Icon" />
+        <img src={images.alexe1} alt="Alexe1 Icon" />
       </div>
     </header>
   );

@@ -1,4 +1,16 @@
 import { GameInfoProps } from "./interfaces/GameInfoProps";
+import alexe1 from "./assets/images/alexe1.ico";
+import krpyto from "./assets/images/games/krypto/krypto.jpg";
+import tnp from "./assets/images/games/tnp/tnp.png";
+import contact from "./assets/images/contact.png";
+import gamesImage from "./assets/images/games.png";
+import about from "./assets/images/about.png";
+import send from "./assets/images/send.png";
+import name from "./assets/images/name.png";
+import email from "./assets/images/email.png";
+import playstore from "./assets/images/playstore.png";
+import itchio from "./assets/images/itchio.png";
+import gamejolt from "./assets/images/gamejolt.png";
 
 export const games: GameInfoProps = {
   krypto: {
@@ -92,15 +104,17 @@ export const games: GameInfoProps = {
   },
 };
 
-export const imagesPath = {
-  contact: new URL("src/assets/images/contact.png", import.meta.url).href,
-  games: new URL("src/assets/images/games.png", import.meta.url).href,
-  about: new URL("src/assets/images/about.png", import.meta.url).href,
-  alexe1: new URL("/alexe1/assets/alexe1-D9T3LakQ.ico", import.meta.url).href,
-  tnp: new URL("src/assets/images/games/tnp/tnp.png", import.meta.url).href,
-  krypto: new URL("src/assets/images/games/krypto/krypto.jpg", import.meta.url)
-    .href,
-  sendIcon: new URL("src/assets/images/send.png", import.meta.url).href,
-  emailIcon: new URL("src/assets/images/email.png", import.meta.url).href,
-  nameIcon: new URL("src/assets/images/name.png", import.meta.url).href,
+export const images = {
+  alexe1: alexe1,
+  krypto: krpyto,
+  tnp: tnp,
+  contact: contact,
+  games: gamesImage,
+  about: about,
+  send: send,
+  name: name,
+  email: email,
+  playstore: playstore,
+  itchio: itchio,
+  gamejolt: gamejolt,
 };
