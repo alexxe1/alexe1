@@ -96,7 +96,7 @@ export const imagesPath = {
   contact: "src/assets/images/contact.png",
   games: "src/assets/images/games.png",
   about: "src/assets/images/about.png",
-  alexe1: "src/assets/images/alexe1.ico",
+  alexe1: "/alexe1/assets/alexe1-D9T3LakQ.ico",
   tnp: "src/assets/images/games/tnp/tnp.png",
   krypto: "src/assets/images/games/krypto/krypto.jpg",
   sendIcon: "src/assets/images/send.png",
