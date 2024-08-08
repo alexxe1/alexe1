@@ -2,8 +2,6 @@ export interface GameProperties {
   name: string;
   description: string;
   trailerLink: string;
-  imagesAmount: number;
-  folderPath: string;
   playstore?: string;
   itchio?: string;
   privacy?: string;

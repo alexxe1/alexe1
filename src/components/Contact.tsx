@@ -1,3 +1,4 @@
+import { images } from "../constants";
 import "./Contact.css";
 
 export function Contact() {
@@ -8,12 +9,12 @@ export function Contact() {
     <section id="contact">
       <form className="contact__form" action={formAction} method="POST">
         <div className="contact__form__name">
-          <img src="src/assets/images/name.png" alt="Name" />
+          <img src={images.name} alt="Name" />
           <input type="text" placeholder="Name" name="name" required />
         </div>
 
         <div className="contact__form__email">
-          <img src="src/assets/images/email.png" alt="Email" />
+          <img src={images.email} alt="Email" />
           <input type="email" placeholder="Email" name="email" required />
         </div>
 
@@ -24,7 +25,7 @@ export function Contact() {
           required
         />
         <div className="contact__form__send">
-          <img src="src/assets/images/send.png" alt="Send" />
+          <img src={images.send} alt="Send" />
           <input type="submit" value="" />
         </div>
       </form>

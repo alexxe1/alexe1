@@ -6,9 +6,9 @@ export function Games() {
   return (
     <section id="games">
       <div className="games-container">
-        <Game to="/krypto" imagePath={images.krypto} />
+        <Game to="/krypto" imagePath={images.krypto.thumbnail} />
 
-        <Game to="/thenorisproject" imagePath={images.tnp} />
+        <Game to="/thenorisproject" imagePath={images.tnp.thumbnail} />
       </div>
     </section>
   );

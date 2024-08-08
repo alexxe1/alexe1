@@ -11,8 +11,6 @@ function GameInfo({ name }: { name: string }) {
   const {
     description,
     trailerLink,
-    imagesAmount,
-    folderPath,
     playstore,
     itchio,
     gamejolt,
@@ -32,7 +30,7 @@ function GameInfo({ name }: { name: string }) {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
         <p>{description}</p>
-        <ImageSlider imagesAmount={imagesAmount} folderPath={folderPath} />
+        <ImageSlider name={name.toLowerCase()} />
 
         <div className="game-links">
           {playstore && <GameLink type="playstore" link={playstore} />}
@@ -45,4 +43,4 @@ function GameInfo({ name }: { name: string }) {
   );
 }
 
-export default GameInfo
+export default GameInfo;

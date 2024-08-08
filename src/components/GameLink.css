@@ -14,6 +14,9 @@
   text-decoration: none;
   transition: transform 0.1s;
   overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
 }
 
 .game-link::before {
@@ -30,16 +33,4 @@
 
 .game-link:hover {
   transform: scale(1.1);
-}
-
-.game-link.itchio::before {
-  background-image: url('/alexe1/assets/itchio-ZVrAKHfB.png');
-}
-
-.game-link.playstore::before {
-  background-image: url('/alexe1/assets/playstore-Cd7T-xZw.png');
-}
-
-.game-link.gamejolt::before {
-  background-image: url('/alexe1/assets/gamejolt-OMakReto.png');
 }

@@ -1,22 +1,16 @@
 import "./ImageSlider.css";
 import { useState, useRef } from "react";
+import { images } from "../constants";
 
-interface ImageSliderProps {
-  imagesAmount: number;
-  folderPath: string;
-}
-
-export function ImageSlider({ imagesAmount, folderPath }: ImageSliderProps) {
+export function ImageSlider({ name }: { name: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const imageDivRef = useRef<HTMLDivElement>(null);
 
-  const images: string[] = Array.from(
-    { length: imagesAmount },
-    (_, index) => `${folderPath}/${index}.png`
-  );
+  // @ts-expect-error why because omg
+  const sliderImages: string[] = images[name].images;
 
   const goToNext = () => {
-    const isLastSlide = currentIndex === images.length - 1;
+    const isLastSlide = currentIndex === sliderImages.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
     playChangeAnimation();
@@ -24,7 +18,7 @@ export function ImageSlider({ imagesAmount, folderPath }: ImageSliderProps) {
 
   const goToPrev = () => {
     const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
+    const newIndex = isFirstSlide ? sliderImages.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
     playChangeAnimation();
   };
@@ -49,7 +43,7 @@ export function ImageSlider({ imagesAmount, folderPath }: ImageSliderProps) {
       <div
         className="image-slider__image"
         ref={imageDivRef}
-        style={{ backgroundImage: `url(${images[currentIndex]})` }}
+        style={{ backgroundImage: `url(${sliderImages[currentIndex]})` }}
       ></div>
       <button className="image-slider__button" onClick={goToNext}>
         ❯
