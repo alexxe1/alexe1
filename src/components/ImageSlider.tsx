@@ -37,7 +37,7 @@ export function ImageSlider({ name }: { name: string }) {
 
   return (
     <div className="image-slider">
-      <button className="image-slider__button" onClick={goToPrev}>
+      <button className="image-slider__button-left" onClick={goToPrev}>
         ❮
       </button>
       <div
@@ -45,7 +45,7 @@ export function ImageSlider({ name }: { name: string }) {
         ref={imageDivRef}
         style={{ backgroundImage: `url(${sliderImages[currentIndex]})` }}
       ></div>
-      <button className="image-slider__button" onClick={goToNext}>
+      <button className="image-slider__button-right" onClick={goToNext}>
         ❯
       </button>
     </div>

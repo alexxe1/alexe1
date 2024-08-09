@@ -10,7 +10,8 @@ function GameInfo({ name }: { name: string }) {
 
   const {
     description,
-    trailerLink,
+    trailerId,
+    fallbackLink,
     playstore,
     itchio,
     gamejolt,
@@ -22,16 +23,17 @@ function GameInfo({ name }: { name: string }) {
       <div className="game-info">
         <Header />
         <h2>{game.name}</h2>
-        <iframe
-          width="560"
-          height="315"
-          src={trailerLink}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        ></iframe>
+
+        {/* @ts-expect-error TypeScript doesn't recognize the web-component, but it exists */}
+        <lite-youtube videoId={trailerId}>
+          <a className="lite-youtube-fallback" href={fallbackLink} target="_blank">
+            Watch trailer on YouTube
+          </a>
+          {/* @ts-expect-error TypeScript doesn't recognize the web-component, but it exists */}
+        </lite-youtube>
+
         <p>{description}</p>
         <ImageSlider name={name.toLowerCase()} />
-
         <div className="game-links">
           {playstore && <GameLink type="playstore" link={playstore} />}
           {itchio && <GameLink type="itchio" link={itchio} />}

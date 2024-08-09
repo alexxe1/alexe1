@@ -1,25 +1,37 @@
 .image-slider {
-  width: 35%;
+  min-width: 35%;
   aspect-ratio: 16/9;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  z-index: 50;
 }
 
-.image-slider__button {
+.image-slider__button-left,
+.image-slider__button-right {
   background-color: transparent;
   border: none;
   font-size: 4rem;
-  color: var(--black);
+  color: var(--white);
   cursor: pointer;
   transition: transform 0.1s;
-  width: 5%;
-  position: relative;
-  background-color: red;
+  position: absolute;
+  z-index: 100;
+  text-shadow: -1px -1px 1px var(--black), 1px -1px 1px var(--black),
+    -1px 1px 1px var(--black), 1px 1px 1px var(--black);
 }
 
-.image-slider__button:hover {
+.image-slider__button-right {
+  right: 15px;
+}
+
+.image-slider__button-left {
+  left: 15px;
+}
+
+.image-slider__button-left:hover,
+.image-slider__button-right:hover {
   transform: scale(1.3);
 }
 

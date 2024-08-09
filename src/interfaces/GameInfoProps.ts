@@ -1,7 +1,8 @@
 export interface GameProperties {
   name: string;
   description: string;
-  trailerLink: string;
+  trailerId: string;
+  fallbackLink: string;
   playstore?: string;
   itchio?: string;
   privacy?: string;

@@ -58,8 +58,8 @@ export const games: GameInfoProps = {
     name: "Krypto",
     description:
       "Krypto is a simple game where you combine your 4 cards, either by adding, subtracting, dividing, or multiplying them, to reach a specific result.",
-    trailerLink:
-      "https://www.youtube-nocookie.com/embed/mhjp9Z1NTG8?si=1N7rmuDr7EL7V3rJ",
+    trailerId: "mhjp9Z1NTG8",
+    fallbackLink: "https://www.youtube.com/watch?v=mhjp9Z1NTG8",
     playstore:
       "https://play.google.com/store/apps/details?id=com.alexe1dev.Krypto&hl=es_AR&gl=US",
     itchio: "https://alexe1.itch.io/krypto",
@@ -73,8 +73,8 @@ export const games: GameInfoProps = {
     name: "The Noris Project",
     description:
       "Complete your given tasks, hide under your desk and watch your security cameras while trying to survive frightening humanoid creatures!",
-    trailerLink:
-      "https://www.youtube-nocookie.com/embed/GAFME_kPOXU?si=7IC_TeczfoGE4mBx",
+    trailerId: "GAFME_kPOXU",
+    fallbackLink: "https://www.youtube.com/watch?v=GAFME_kPOXU",
     gamejolt: "https://gamejolt.com/games/thenorisproject/787238",
     itchio: "https://alexe1.itch.io/the-noris-project",
   },

@@ -114,16 +114,38 @@ body {
   }
 
   .game-info {
-    margin-top: 150px;
     gap: 0;
+    padding-bottom: 0;
+    margin-top: 0;
   }
 
   .game-info iframe {
     transform: scale(0.55);
   }
 
-  .game-info p {
-    width: 95%;
+  .game-info > p:nth-child(4) {
+    width: 80%;
+  }
+
+  .game-links {
+    flex-direction: column;
+  }
+
+  a.game-link {
+    width: 100%;
+  }
+
+  .image-slider {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .image-slider__image {
+    border-radius: 0px;
+  }
+
+  lite-youtube {
+    width: 100%;
   }
 }
 
