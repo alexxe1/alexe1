@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { ImageSlider } from "./ImageSlider";
 import { games } from "../constants";
 import { GameLink } from "./GameLink";
+import "@justinribeiro/lite-youtube";
 
 function GameInfo({ name }: { name: string }) {
   const game = games[name.toLowerCase()];
@@ -26,7 +27,11 @@ function GameInfo({ name }: { name: string }) {
 
         {/* @ts-expect-error TypeScript doesn't recognize the web-component, but it exists */}
         <lite-youtube videoId={trailerId}>
-          <a className="lite-youtube-fallback" href={fallbackLink} target="_blank">
+          <a
+            className="lite-youtube-fallback"
+            href={fallbackLink}
+            target="_blank"
+          >
             Watch trailer on YouTube
           </a>
           {/* @ts-expect-error TypeScript doesn't recognize the web-component, but it exists */}

@@ -112,41 +112,6 @@ body {
     margin-top: 150px;
     align-items: center;
   }
-
-  .game-info {
-    gap: 0;
-    padding-bottom: 0;
-    margin-top: 0;
-  }
-
-  .game-info iframe {
-    transform: scale(0.55);
-  }
-
-  .game-info > p:nth-child(4) {
-    width: 80%;
-  }
-
-  .game-links {
-    flex-direction: column;
-  }
-
-  a.game-link {
-    width: 100%;
-  }
-
-  .image-slider {
-    width: 100%;
-    border-radius: 0;
-  }
-
-  .image-slider__image {
-    border-radius: 0px;
-  }
-
-  lite-youtube {
-    width: 100%;
-  }
 }
 
 @media screen and (361px <= width <= 480px) {
@@ -231,19 +196,6 @@ body {
 
   .game {
     width: 80%;
-  }
-
-  .game-info {
-    margin-top: 150px;
-    gap: 0;
-  }
-
-  .game-info iframe {
-    transform: scale(0.55);
-  }
-
-  .game-info p {
-    width: 95%;
   }
 }
 
@@ -335,19 +287,6 @@ body {
   .game {
     width: 60%;
   }
-
-  .game-info {
-    margin-top: 150px;
-    gap: 0;
-  }
-
-  .game-info iframe {
-    transform: scale(0.55);
-  }
-
-  .game-info p {
-    width: 95%;
-  }
 }
 
 @media screen and (769px <= width <= 960px) {
@@ -438,24 +377,11 @@ body {
   .game {
     width: 60%;
   }
-
-  .game-info {
-    margin-top: 150px;
-    gap: 0;
-  }
-
-  .game-info iframe {
-    transform: scale(0.55);
-  }
-
-  .game-info p {
-    width: 95%;
-  }
 }
 
 @media screen and (961px <= width <= 1024px) {
   .header__icon {
-    width: 12%;
+    width: 11%;
   }
 
   footer {
@@ -541,24 +467,11 @@ body {
   .game {
     width: 40%;
   }
-
-  .game-info {
-    margin-top: 150px;
-    gap: 0;
-  }
-
-  .game-info iframe {
-    transform: scale(0.55);
-  }
-
-  .game-info p {
-    width: 95%;
-  }
 }
 
 @media screen and (1025px <= width <= 1328px) {
   .header__icon {
-    width: 10%;
+    width: 9%;
   }
 
   footer {
@@ -643,18 +556,5 @@ body {
 
   .game {
     width: 40%;
-  }
-
-  .game-info {
-    margin-top: 150px;
-    gap: 0;
-  }
-
-  .game-info iframe {
-    transform: scale(0.55);
-  }
-
-  .game-info p {
-    width: 95%;
   }
 }
