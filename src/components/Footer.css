@@ -11,6 +11,7 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 30px;
-  padding: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding: 0 0 0 env(safe-area-inset-left) env(safe-area-inset-right);
   margin: 0;
 }

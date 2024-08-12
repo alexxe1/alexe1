@@ -14,12 +14,14 @@
   --light-blue: #00adb5;
   --white: #eeeeee;
   --light-gray: #e0dede;
+  --vh: 100%;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   padding: 0;
+  padding-bottom: env(safe-area-inset-bottom);
   overflow: hidden;
 }
 
