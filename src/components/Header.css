@@ -3,7 +3,7 @@ header {
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 18vh;
+  height: 16vh;
   box-shadow: 0 0 10px var(--black);
   z-index: 100;
   overflow: hidden;

@@ -37,7 +37,7 @@ body {
 
 @media screen and (0px <= width <= 360px) {
   .header__icon {
-    width: 25%;
+    width: 24%;
   }
 
   footer {
@@ -118,7 +118,7 @@ body {
 
 @media screen and (361px <= width <= 480px) {
   .header__icon {
-    width: 25%;
+    width: 24%;
   }
 
   footer {
@@ -203,7 +203,7 @@ body {
 
 @media screen and (481px <= width <= 768px) {
   .header__icon {
-    width: 15%;
+    width: 18%;
   }
 
   footer {
@@ -293,7 +293,7 @@ body {
 
 @media screen and (769px <= width <= 960px) {
   .header__icon {
-    width: 12%;
+    width: 11%;
   }
 
   footer {
@@ -383,7 +383,7 @@ body {
 
 @media screen and (961px <= width <= 1024px) {
   .header__icon {
-    width: 11%;
+    width: 9%;
   }
 
   footer {
