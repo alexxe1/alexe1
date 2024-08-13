@@ -1,13 +1,20 @@
 import "./ImageSlider.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { images } from "../constants";
 
 export function ImageSlider({ name }: { name: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const imageDivRef = useRef<HTMLDivElement>(null);
 
-  // @ts-expect-error why because omg
+  // @ts-expect-error ___
   const sliderImages: string[] = images[name].images;
+
+  useEffect(() => {
+    sliderImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [sliderImages]);
 
   const goToNext = () => {
     const isLastSlide = currentIndex === sliderImages.length - 1;

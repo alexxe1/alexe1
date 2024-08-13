@@ -1,5 +1,8 @@
-export function scrollToSection(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, elementId: string) {
-  event.preventDefault();
+export function scrollToSection(
+  elementId: string,
+  event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+) {
+  if (event) event.preventDefault();
   const element = document.getElementById(elementId);
   if (element) {
     element.scrollIntoView({ behavior: "smooth" });

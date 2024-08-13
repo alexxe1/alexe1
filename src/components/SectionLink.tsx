@@ -11,7 +11,7 @@ export function LinkSection({ elementId, text, imagePath }: LinkSectionProps) {
   const handleClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    scrollToSection(event, elementId);
+    scrollToSection(elementId, event);
   };
 
   return (

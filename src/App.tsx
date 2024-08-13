@@ -4,18 +4,12 @@ import { Privacy } from "./components/Privacy";
 import { Main } from "./components/Main";
 import React, { Suspense } from "react";
 import { Loading } from "./components/Loading";
+import { scrollToSection } from "./functions/scrollToSection";
 
 const LazyGameInfo = React.lazy(() => import("./components/GameInfo"));
 
 function App() {
-  const setVh = () => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  };
-
-  window.addEventListener("resize", setVh);
-  window.addEventListener("orientationchange", setVh);
-  setVh();
+  window.addEventListener("resize", () => scrollToSection("home"));
 
   return (
     <Suspense fallback={<Loading />}>
