@@ -11,8 +11,6 @@ function GameInfo({ name }: { name: string }) {
 
   const {
     description,
-    trailerId,
-    fallbackLink,
     playstore,
     itchio,
     gamejolt,
