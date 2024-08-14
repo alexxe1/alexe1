@@ -11,16 +11,15 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  margin-top: 200px;
   padding-bottom: 130px;
+  margin-top: 18vh;
 }
 
 .game-info h2 {
-  font-size: 4rem;
   text-align: center;
-  margin: 0;
-  padding: 0;
   font-family: default-bold;
+  font-size: 4rem;
+  margin: 0;
 }
 
 .game-info p {
@@ -84,8 +83,8 @@ lite-youtube {
     margin-top: 150px;
   }
 
-  .game-info > p:nth-child(4) {
-    width: 80%;
+  .game-info > p {
+    width: 90%;
   }
 
   .game-links {
@@ -108,7 +107,7 @@ lite-youtube {
     margin-top: 150px;
   }
 
-  .game-info > p:nth-child(4) {
+  .game-info > p {
     width: 80%;
   }
 
@@ -136,7 +135,7 @@ lite-youtube {
     margin-top: 150px;
   }
 
-  .game-info > p:nth-child(4) {
+  .game-info > p {
     width: 70%;
   }
 
@@ -166,7 +165,7 @@ lite-youtube {
     margin-top: 150px;
   }
 
-  .game-info > p:nth-child(4) {
+  .game-info > p {
     width: 60%;
   }
 
@@ -198,7 +197,7 @@ lite-youtube {
     margin-top: 150px;
   }
 
-  .game-info > p:nth-child(4) {
+  .game-info > p {
     width: 50%;
   }
 
