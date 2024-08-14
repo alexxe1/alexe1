@@ -8,6 +8,7 @@ export function Header() {
   const handleClick = () => {
     navigate("/");
     window.scrollTo({ top: 0, behavior: "smooth" });
+    document.title = "alexe1: Home"
   };
 
   return (

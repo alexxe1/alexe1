@@ -25,18 +25,6 @@ function GameInfo({ name }: { name: string }) {
         <Header />
         <h2>{game.name}</h2>
 
-        {/* @ts-expect-error TypeScript doesn't recognize the web-component, but it exists */}
-        <lite-youtube videoId={trailerId}>
-          <a
-            className="lite-youtube-fallback"
-            href={fallbackLink}
-            target="_blank"
-          >
-            Watch trailer on YouTube
-          </a>
-          {/* @ts-expect-error TypeScript doesn't recognize the web-component, but it exists */}
-        </lite-youtube>
-
         <p>{description}</p>
         <ImageSlider name={name.toLowerCase()} />
         <div className="game-links">

@@ -5,13 +5,20 @@ interface LinkSectionProps {
   elementId: string;
   text: string;
   imagePath: string;
+  pageTitle?: string;
 }
 
-export function LinkSection({ elementId, text, imagePath }: LinkSectionProps) {
+export function LinkSection({
+  elementId,
+  text,
+  imagePath,
+  pageTitle,
+}: LinkSectionProps) {
   const handleClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    scrollToSection(elementId, event);
+    const title = pageTitle ? `alexe1: ${pageTitle}` : "alexe1";
+    scrollToSection(elementId, event, title);
   };
 
   return (

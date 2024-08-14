@@ -36,46 +36,6 @@
   justify-content: center;
 }
 
-lite-youtube {
-  width: 100%;
-  margin-bottom: -300px;
-  margin-top: -300px;
-  border-radius: 20px;
-  transform: scale(0.4);
-  box-shadow: 0 0 10px var(--black);
-}
-
-.lite-youtube-fallback {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1em;
-  padding: 1em;
-  background-color: var(--black);
-  border-radius: 20px;
-  color: #fff;
-  text-decoration: none;
-}
-
-.lite-youtube-fallback::before {
-  display: block;
-  content: '';
-  border: solid transparent;
-  border-width: 2em 0 2em 3em;
-  border-left-color: var(--white);
-}
-
-.lite-youtube-fallback:hover::before {
-  border-left-color: var(--light-blue);
-}
-
-.lite-youtube-fallback:focus {
-  outline: 2px solid red;
-}
-
 @media screen and (0px <= width <= 480px) {
   .game-info {
     gap: 10px;
@@ -92,10 +52,6 @@ lite-youtube {
   }
 
   a.game-link {
-    width: 100%;
-  }
-
-  lite-youtube {
     width: 100%;
   }
 }
@@ -118,13 +74,6 @@ lite-youtube {
 
   a.game-link {
     width: 60%;
-  }
-
-  lite-youtube {
-    width: 100%;
-    transform: scale(0.8);
-    border-radius: 20px;
-    box-shadow: 0 0 10px var(--black);
   }
 }
 
@@ -149,13 +98,6 @@ lite-youtube {
     width: 100%;
     font-size: 1.4rem;
   }
-
-  lite-youtube {
-    width: 100%;
-    transform: scale(0.8);
-    border-radius: 20px;
-    box-shadow: 0 0 10px var(--black);
-  }
 }
 
 @media screen and (961px <= width <= 1024px) {
@@ -179,15 +121,6 @@ lite-youtube {
     width: 100%;
     font-size: 1.4rem;
   }
-
-  lite-youtube {
-    width: 100%;
-    margin-bottom: -100px;
-    margin-top: -100px;
-    transform: scale(0.6);
-    border-radius: 20px;
-    box-shadow: 0 0 10px var(--black);
-  }
 }
 
 @media screen and (1025px <= width <= 1328px) {
@@ -210,14 +143,5 @@ lite-youtube {
   a.game-link {
     width: 100%;
     font-size: 1.4rem;
-  }
-
-  lite-youtube {
-    width: 100%;
-    margin-bottom: -150px;
-    margin-top: -150px;
-    transform: scale(0.5);
-    border-radius: 20px;
-    box-shadow: 0 0 10px var(--black);
   }
 }
