@@ -3,7 +3,6 @@ import { Header } from "./Header";
 import { ImageSlider } from "./ImageSlider";
 import { games } from "../constants";
 import { GameLink } from "./GameLink";
-import "@justinribeiro/lite-youtube";
 
 function GameInfo({ name }: { name: string }) {
   const game = games[name.toLowerCase()];
