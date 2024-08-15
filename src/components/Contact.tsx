@@ -12,12 +12,10 @@ export function Contact() {
           <img src={images.name} alt="Name" />
           <input type="text" placeholder="Name" name="name" required />
         </div>
-
         <div className="contact__form__email">
           <img src={images.email} alt="Email" />
           <input type="email" placeholder="Email" name="email" required />
         </div>
-
         <textarea
           className="contact__form__info"
           placeholder="Your text goes here..."

@@ -2,9 +2,11 @@
   width: 100vw;
   height: 100dvh;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .contact__form {
@@ -62,7 +64,7 @@
   outline: none;
   padding: 20px;
   width: 85%;
-  height: 35%;
+  min-height: 25%;
   color: var(--gray);
   font-family: default-bold;
   font-size: 2rem;
