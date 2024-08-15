@@ -9,7 +9,7 @@ import { scrollToSection } from "./functions/scrollToSection";
 const LazyGameInfo = React.lazy(() => import("./components/GameInfo"));
 
 function App() {
-  // window.addEventListener("resize", () => scrollToSection("home"));
+  window.addEventListener("resize", () => scrollToSection("home"));
 
   return (
     <Suspense fallback={<Loading />}>
