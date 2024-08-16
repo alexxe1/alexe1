@@ -11,8 +11,6 @@ header {
   justify-content: center;
   align-items: center;
   gap: 5%;
-
-  background-color: transparent;
 }
 
 .header__icon {

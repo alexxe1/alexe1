@@ -14,7 +14,6 @@ export function GameLink({ type, link }: GameLinkProps) {
   if (type === "privacy") {
     return (
       <Link
-        target="_blank"
         className={linkClass}
         to={link}
         style={{ backgroundImage: `url(${backgroundImage})` }}
