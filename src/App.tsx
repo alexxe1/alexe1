@@ -18,14 +18,19 @@ function App() {
   });
 
   return (
-    <Suspense fallback={<Loading />}>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/krypto" element={<LazyGameInfo name="krypto" />} />
-        <Route path="/krypto/privacy" element={<Privacy name="krypto" />} />
-        <Route path="/thenorisproject" element={<LazyGameInfo name="tnp" />} />
-      </Routes>
-    </Suspense>
+    <div className="app">
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/krypto" element={<LazyGameInfo name="krypto" />} />
+          <Route path="/krypto/privacy" element={<Privacy name="krypto" />} />
+          <Route
+            path="/thenorisproject"
+            element={<LazyGameInfo name="tnp" />}
+          />
+        </Routes>
+      </Suspense>
+    </div>
   );
 }
 

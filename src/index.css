@@ -35,7 +35,7 @@ body {
   src: url('/src/assets/fonts/default_normal.woff2') format('woff2');
 }
 
-@media screen and (0px <= width <= 360px) {
+@media (0px <= width <= 360px) and (orientation: portrait) {
   .header__icon {
     width: 24%;
   }
@@ -116,7 +116,7 @@ body {
   }
 }
 
-@media screen and (361px <= width <= 480px) {
+@media (361px <= width <= 480px) and (orientation: portrait) {
   .header__icon {
     width: 24%;
   }
@@ -201,7 +201,7 @@ body {
   }
 }
 
-@media screen and (481px <= width <= 768px) {
+@media (481px <= width <= 768px) and (orientation: portrait) {
   .header__icon {
     width: 18%;
   }
@@ -291,7 +291,7 @@ body {
   }
 }
 
-@media screen and (769px <= width <= 960px) {
+@media (769px <= width <= 960px) and (orientation: portrait) {
   .header__icon {
     width: 11%;
   }
@@ -381,7 +381,7 @@ body {
   }
 }
 
-@media screen and (961px <= width <= 1024px) {
+@media (961px <= width <= 1024px) {
   .header__icon {
     width: 9%;
   }
@@ -471,7 +471,7 @@ body {
   }
 }
 
-@media screen and (1025px <= width <= 1328px) {
+@media (1025px <= width <= 1328px) {
   .header__icon {
     width: 9%;
   }
@@ -558,5 +558,28 @@ body {
 
   .game {
     width: 40%;
+  }
+}
+
+/* === */
+
+@media (0px <= width <= 768px) and (orientation: landscape) {
+  .app {
+    display: none;
+  }
+
+  #root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #root:before {
+    content: 'This website is not available in landscape orientation in mobiles.';
+    text-align: center;
+    width: 80%;
+    font-size: 150%;
   }
 }
