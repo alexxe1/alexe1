@@ -37,7 +37,7 @@ body {
 
 @media (0px <= width <= 360px) and (orientation: portrait) {
   .header__icon {
-    width: 24%;
+    width: 17%;
   }
 
   footer {
@@ -45,7 +45,7 @@ body {
   }
 
   footer a {
-    transform: scale(0.8);
+    transform: scale(0.7);
   }
 
   #home {
