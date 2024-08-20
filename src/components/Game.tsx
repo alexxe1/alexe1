@@ -1,5 +1,5 @@
-import "./Game.css";
 import { Link } from "react-router-dom";
+import "./Game.css";
 
 interface GameProps {
   to: string;

@@ -6,11 +6,10 @@ header {
   height: 16vh;
   box-shadow: 0 0 10px var(--black);
   z-index: 100;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5%;
+  gap: 3%;
 }
 
 .header__icon {
@@ -20,6 +19,7 @@ header {
   justify-content: center;
   align-items: center;
   transition: transform 0.1s;
+  cursor: pointer;
 }
 
 .header__icon:hover {
@@ -32,7 +32,17 @@ header {
   object-fit: contain;
 }
 
-.header__media {
+header button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+  transform: scale(0.6);
   display: flex;
-  gap: 5%;
+  align-items: center;
 }
+
+header button:hover {
+  transform: scale(0.7);
+}
+

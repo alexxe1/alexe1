@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../hooks/useLanguage";
+import { images } from "../constants/images";
 import "./GameLink.css";
-import { images } from "../constants";
 
 interface GameLinkProps {
   type: "itchio" | "playstore" | "gamejolt" | "privacy";
@@ -10,6 +11,7 @@ interface GameLinkProps {
 export function GameLink({ type, link }: GameLinkProps) {
   const linkClass = `game-link ${type}`;
   const backgroundImage = type != "privacy" ? images[type] : "";
+  const { traductions } = useLanguage();
 
   if (type === "privacy") {
     return (
@@ -18,7 +20,7 @@ export function GameLink({ type, link }: GameLinkProps) {
         to={link}
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        Privacy Policy
+        {traductions.privacy}
       </Link>
     );
   } else {

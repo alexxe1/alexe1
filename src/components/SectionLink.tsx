@@ -1,19 +1,19 @@
-import "./SectionLink.css";
 import { scrollToSection } from "../functions/scrollToSection";
+import "./SectionLink.css";
 
-interface LinkSectionProps {
+interface SectionLinkProps {
   elementId: string;
   text: string;
   imagePath: string;
   pageTitle: string;
 }
 
-export function LinkSection({
+export function SectionLink({
   elementId,
   text,
   imagePath,
   pageTitle,
-}: LinkSectionProps) {
+}: SectionLinkProps) {
   const handleClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {

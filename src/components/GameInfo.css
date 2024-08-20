@@ -20,12 +20,14 @@
   font-family: default-bold;
   font-size: 4rem;
   margin: 0;
+  color: var(--black);
 }
 
 .game-info p {
   width: 30%;
   text-align: center;
   font-size: 1.5rem;
+  color: var(--black);
 }
 
 .game-links {

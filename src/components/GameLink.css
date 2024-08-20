@@ -11,6 +11,7 @@
   color: var(--white);
   font-family: default-bold;
   font-size: 1.8rem;
+  text-align: center;
   text-decoration: none;
   transition: transform 0.1s;
   overflow: hidden;

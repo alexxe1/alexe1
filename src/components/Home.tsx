@@ -1,27 +1,33 @@
-import { images } from "../constants";
+import { useLanguage } from "../hooks/useLanguage";
+import { images } from "../constants/images";
+import { SectionLink } from "./SectionLink";
 import "./Home.css";
-import { LinkSection } from "./SectionLink";
 
 export function Home() {
+  const { traductions } = useLanguage();
+  const contactImg = typeof images.contact === "string" ? images.contact : "";
+  const gamesImg = typeof images.games === "string" ? images.games : "";
+  const aboutImg = typeof images.about === "string" ? images.about : "";
+
   return (
     <section id="home">
-      <LinkSection
+      <SectionLink
         elementId="contact"
-        text="Contact"
-        imagePath={images.contact}
-        pageTitle="Contact"
+        text={traductions.contact}
+        imagePath={contactImg}
+        pageTitle={traductions.contact}
       />
-      <LinkSection
+      <SectionLink
         elementId="games"
-        text="Games"
-        imagePath={images.games}
-        pageTitle="Games"
+        text={traductions.games}
+        imagePath={gamesImg}
+        pageTitle={traductions.games}
       />
-      <LinkSection
+      <SectionLink
         elementId="about"
-        text="About"
-        imagePath={images.about}
-        pageTitle="About"
+        text={traductions.about}
+        imagePath={aboutImg}
+        pageTitle={traductions.about}
       />
     </section>
   );

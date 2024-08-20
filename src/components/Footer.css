@@ -15,3 +15,12 @@ footer {
   padding: 0 0 0 env(safe-area-inset-left) env(safe-area-inset-right);
   margin: 0;
 }
+
+.footer__page-credits {
+  color: var(--gray);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 5px;
+  text-decoration: none;
+}

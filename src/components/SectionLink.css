@@ -22,7 +22,7 @@
   position: absolute;
   bottom: 0px;
   left: 30px;
-  font-size: 5rem;
+  font-size: 4.6rem;
 }
 
 .link-section > img {
@@ -31,4 +31,8 @@
   top: 30px;
   right: 30px;
   aspect-ratio: 1/1;
+}
+
+.dark .link-section img {
+  filter: drop-shadow(0 0 5px var(--white));
 }

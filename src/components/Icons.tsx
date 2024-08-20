@@ -1,4 +1,29 @@
-export function TikTok() {
+export function ThemeIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="media-link-icon"
+      viewBox="0 0 16 16"
+    >
+      <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8.5 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707m-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707m7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707M3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707" />
+    </svg>
+  );
+}
+
+export function LanguagesIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="media-link-icon"
+      viewBox="0 0 16 16"
+    >
+      <path d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286zm1.634-.736L5.5 3.956h-.049l-.679 2.022z" />
+      <path d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm7.138 9.995q.289.451.63.846c-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6 6 0 0 1-.415-.492 2 2 0 0 1-.94.31" />
+    </svg>
+  );
+}
+
+export function TikTokIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +35,7 @@ export function TikTok() {
   );
 }
 
-export function Youtube() {
+export function YoutubeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +47,7 @@ export function Youtube() {
   );
 }
 
-export function X() {
+export function XIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +59,7 @@ export function X() {
   );
 }
 
-export function PlayStore() {
+export function PlayStoreIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

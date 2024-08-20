@@ -1,13 +1,16 @@
+import { useState, useRef, useEffect, useMemo } from "react";
+import { images } from "../constants/images";
 import "./ImageSlider.css";
-import { useState, useRef, useEffect } from "react";
-import { images } from "../constants";
 
 export function ImageSlider({ name }: { name: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const imageDivRef = useRef<HTMLDivElement>(null);
 
-  // @ts-expect-error ___
-  const sliderImages: string[] = images[name].images;
+  const sliderImages = useMemo(() => {
+    return images[name] && typeof images[name] !== "string"
+      ? images[name].images
+      : [];
+  }, [name]);
 
   useEffect(() => {
     sliderImages.forEach((src) => {

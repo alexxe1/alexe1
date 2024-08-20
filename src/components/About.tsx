@@ -1,17 +1,15 @@
+import { useLanguage } from "../hooks/useLanguage";
 import "./About.css";
 
 export function About() {
+  const { traductions } = useLanguage();
+
   return (
     <section id="about">
       <div className="about__info">
-        <h2 className="about__title">About me</h2>
-        <p>
-          My name is <b>Elías Torczuk</b>, but my developer name is alexe1.
-        </p>
-        <p>
-          I develop video games as a hobby since 2016 (12 years old). I use
-          <b> Unity</b> as the game engine.
-        </p>
+        <h2 className="about__title">{traductions.aboutMe}</h2>
+        <p>{traductions.aboutInfo1}</p>
+        <p>{traductions.aboutInfo2}</p>
       </div>
     </section>
   );

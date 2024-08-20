@@ -1,6 +1,6 @@
-import "./Privacy.css";
-import { games } from "../constants";
+import { games } from "../constants/games";
 import { Header } from "./Header";
+import "./Privacy.css";
 
 interface PrivacyProps {
   name: string;

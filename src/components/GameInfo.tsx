@@ -1,20 +1,20 @@
-import "./GameInfo.css";
-import { Header } from "./Header";
-import { ImageSlider } from "./ImageSlider";
-import { games } from "../constants";
+import { games } from "../constants/games";
 import { GameLink } from "./GameLink";
+import { ImageSlider } from "./ImageSlider";
+import { Header } from "./Header";
+import "./GameInfo.css";
 
-function GameInfo({ name }: { name: string }) {
+function GameInfo({
+  name,
+  description,
+}: {
+  name: string;
+  description: string;
+}) {
   const game = games[name.toLowerCase()];
   if (!game) return <p>Game not found</p>;
 
-  const {
-    description,
-    playstore,
-    itchio,
-    gamejolt,
-    privacy,
-  } = game;
+  const { playstore, itchio, gamejolt, privacy } = game;
 
   return (
     <div className="game-info-wrapper">
