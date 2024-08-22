@@ -15,15 +15,14 @@ export function LanguageSelector() {
 
   useEffect(() => {
     const languageSelector = languageSelectorRef.current;
+    if (!languageSelector) return;
 
-    if (languageSelector) {
-      if (showLanguageSelector) {
-        languageSelector.classList.add("show");
-        languageSelector.classList.remove("hide");
-      } else {
-        languageSelector.classList.add("hide");
-        languageSelector.classList.remove("show");
-      }
+    if (showLanguageSelector) {
+      languageSelector.classList.add("show");
+      languageSelector.classList.remove("hide");
+    } else {
+      languageSelector.classList.add("hide");
+      languageSelector.classList.remove("show");
     }
   }, [showLanguageSelector]);
 

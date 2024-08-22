@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { name } from "../constants/general";
 import "./Game.css";
 
 interface GameProps {
@@ -9,7 +10,7 @@ interface GameProps {
 
 export function Game({ to, imagePath, gameName }: GameProps) {
   const handleClick = () => {
-    document.title = `alexe1: ${gameName}`;
+    document.title = `${name}: ${gameName}`;
   };
 
   return (

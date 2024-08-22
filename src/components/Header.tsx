@@ -3,8 +3,9 @@ import { useLanguage } from "../hooks/useLanguage";
 import { useTheme } from "../hooks/useTheme";
 import { images } from "../constants/images";
 import { LanguagesIcon, ThemeIcon } from "./Icons";
-import "./Header.css";
+import { name } from "../constants/general";
 import { setPageTitle } from "../functions/setPageTitle";
+import "./Header.css"
 
 export function Header() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export function Header() {
   const handleClick = () => {
     navigate("/");
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setPageTitle(`alexe1: ${traductions.home}`);
+    setPageTitle(`${name}: ${traductions.home}`);
   };
 
   const alexe1Img = typeof images.alexe1 === "string" ? images.alexe1 : "";
@@ -31,7 +32,7 @@ export function Header() {
         onClick={handleClick}
         style={{ cursor: "pointer" }}
       >
-        <img src={alexe1Img} alt="Alexe1 Icon" />
+        <img src={alexe1Img} alt={`${name} Icon`} />
       </div>
 
       <button onClick={() => setShowLanguageSelector(!showLanguageSelector)}>

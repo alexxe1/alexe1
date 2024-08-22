@@ -5,9 +5,8 @@ import "./Contact.css";
 
 export function Contact() {
   const [name, setName] = useState<string>("");
-  const mail: string = "alexe1developer777@gmail.com";
-  const formAction: string = `https://formsubmit.co/${mail}`;
   const { traductions } = useLanguage();
+  const mail: string = "alexe1developer777@gmail.com";
   const nameImg = typeof images.name === "string" ? images.name : "";
   const emailImg = typeof images.email === "string" ? images.email : "";
   const sendImg = typeof images.send === "string" ? images.send : "";
@@ -21,7 +20,11 @@ export function Contact() {
 
   return (
     <section id="contact">
-      <form className="contact__form" action={formAction} method="POST">
+      <form
+        className="contact__form"
+        action={`https://formsubmit.co/${mail}`}
+        method="POST"
+      >
         <div className="contact__form__name">
           <img src={nameImg} alt="Name" />
           <input
@@ -30,6 +33,7 @@ export function Contact() {
             name="name"
             value={name}
             onChange={handleNameChange}
+            maxLength={30}
             required
           />
         </div>
@@ -39,6 +43,7 @@ export function Contact() {
             type="email"
             placeholder={traductions.email}
             name="email"
+            maxLength={40}
             required
           />
         </div>

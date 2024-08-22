@@ -1,3 +1,5 @@
+import { name } from "./general";
+
 export const languages = {
   en: {
     credits: "Page by Ezequias Torczuk",
@@ -10,7 +12,7 @@ export const languages = {
     info: "Your text goes here...",
     privacy: "Privacy Policy",
     aboutMe: "About Me",
-    aboutInfo1: "My name is Elías Torczuk, but my developer name is alexe1.",
+    aboutInfo1: `My name is Elías Torczuk, but my developer name is ${name}.`,
     aboutInfo2:
       "I develop video games as a hobby since 2016 (12 years old). I use Unity as the game engine.",
     kryptoDescription:
@@ -30,8 +32,7 @@ export const languages = {
     info: "Tu texto va aquí...",
     privacy: "Política de privacidad",
     aboutMe: "Sobre mí",
-    aboutInfo1:
-      "Me llamo Elías Torczuk, pero mi nombre de desarrollador es alexe1.",
+    aboutInfo1: `Me llamo Elías Torczuk, pero mi nombre de desarrollador es ${name}.`,
     aboutInfo2:
       "Desarrollo videojuegos como hobby desde 2016 (12 años). Utilizo Unity como motor de desarrollo.",
     kryptoDescription:

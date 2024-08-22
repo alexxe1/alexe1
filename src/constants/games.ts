@@ -6,7 +6,7 @@ export const games: GameInfoProps = {
     playstore:
       "https://play.google.com/store/apps/details?id=com.alexe1dev.Krypto&hl=es_AR&gl=US",
     itchio: "https://alexe1.itch.io/krypto",
-    privacy: "/krypto/privacy",
+    privacyPath: "/krypto/privacy",
     privacyText: `
         alexe1dev built the Krypto app as a Free app. This SERVICE is provided by alexe1dev 
         at no cost and is intended for use as is.

@@ -8,12 +8,18 @@ import { Loading } from "./components/Loading";
 import { LanguageSelector } from "./components/LanguageSelector";
 import "./App.css";
 import { setPageTitle } from "./functions/setPageTitle";
+import {
+  kryptoPath,
+  kryptoPrivacyPath,
+  name,
+  tnpPath,
+} from "./constants/general";
 
 const LazyGameInfo = React.lazy(() => import("./components/GameInfo"));
 
 function App() {
   const { traductions } = useLanguage();
-  setPageTitle(`alexe1: ${traductions.home}`);
+  setPageTitle(`${name}: ${traductions.home}`);
   window.addEventListener("resize", () => scrollToSection("home"));
 
   return (
@@ -21,25 +27,24 @@ function App() {
       <Suspense fallback={<Loading />}>
         <LanguageSelector />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route
-            path="/krypto"
-            element={
-              <LazyGameInfo
-                name="krypto"
-                description={traductions.kryptoDescription}
-              />
-            }
+          <Route 
+            path="/" 
+            element={<Main />} 
           />
-          <Route path="/krypto/privacy" element={<Privacy name="krypto" />} />
+
           <Route
-            path="/thenorisproject"
-            element={
-              <LazyGameInfo
-                name="tnp"
-                description={traductions.tnpDescription}
-              />
-            }
+            path={kryptoPath}
+            element={<LazyGameInfo name="krypto" description={traductions.kryptoDescription}/>}
+          />
+
+          <Route 
+            path={kryptoPrivacyPath} 
+            element={<Privacy name="krypto" />} 
+          />
+
+          <Route
+            path={tnpPath}
+            element={<LazyGameInfo name="tnp" description={traductions.tnpDescription}/>}
           />
         </Routes>
       </Suspense>

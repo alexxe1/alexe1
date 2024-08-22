@@ -2,6 +2,7 @@ import { images } from "../constants/images";
 import { games } from "../constants/games";
 import { Game } from "./Game";
 import "./Games.css";
+import { kryptoPath, tnpPath } from "../constants/general";
 
 export function Games() {
   const kryptoThumbnailImg =
@@ -17,13 +18,13 @@ export function Games() {
     <section id="games">
       <div className="games-container">
         <Game
-          to="/krypto"
+          to={kryptoPath}
           imagePath={kryptoThumbnailImg}
           gameName={games.krypto.name}
         />
 
         <Game
-          to="/thenorisproject"
+          to={tnpPath}
           imagePath={tnpThumbnailImg}
           gameName={games.tnp.name}
         />

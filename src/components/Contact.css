@@ -7,6 +7,7 @@
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
+  scroll-padding-left: 50vw;
 }
 
 .contact__form {
@@ -44,7 +45,11 @@
   outline: none;
   color: var(--gray);
   font-family: default-bold;
+  width: 100%;
   font-size: 2rem;
+  overflow: hidden; 
+  text-overflow: clip; 
+  box-sizing: border-box;
 }
 
 .contact__form__name::placeholder,

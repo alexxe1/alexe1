@@ -14,7 +14,7 @@ function GameInfo({
   const game = games[name.toLowerCase()];
   if (!game) return <p>Game not found</p>;
 
-  const { playstore, itchio, gamejolt, privacy } = game;
+  const { playstore, itchio, gamejolt, privacyPath } = game;
 
   return (
     <div className="game-info-wrapper">
@@ -28,7 +28,7 @@ function GameInfo({
           {playstore && <GameLink type="playstore" link={playstore} />}
           {itchio && <GameLink type="itchio" link={itchio} />}
           {gamejolt && <GameLink type="gamejolt" link={gamejolt} />}
-          {privacy && <GameLink type="privacy" link={privacy} />}
+          {privacyPath && <GameLink type="privacy" link={privacyPath} />}
         </div>
       </div>
     </div>

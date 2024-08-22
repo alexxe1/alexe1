@@ -2,7 +2,7 @@ export interface GameProperties {
   name: string;
   playstore?: string;
   itchio?: string;
-  privacy?: string;
+  privacyPath?: string;
   gamejolt?: string;
   privacyText?: string;
 }

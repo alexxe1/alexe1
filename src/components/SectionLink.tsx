@@ -1,4 +1,5 @@
 import { scrollToSection } from "../functions/scrollToSection";
+import { name } from "../constants/general";
 import "./SectionLink.css";
 
 interface SectionLinkProps {
@@ -17,7 +18,7 @@ export function SectionLink({
   const handleClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    const title = `alexe1: ${pageTitle}`;
+    const title = `${name}: ${pageTitle}`;
     scrollToSection(elementId, event, title);
   };
 
