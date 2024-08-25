@@ -33,6 +33,6 @@
   aspect-ratio: 1/1;
 }
 
-.dark .link-section img {
+.light .link-section img {
   filter: drop-shadow(0 0 5px var(--white));
 }

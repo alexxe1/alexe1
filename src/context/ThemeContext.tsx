@@ -15,6 +15,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       setTheme(lastTheme as "light" | "dark");
       document.body.classList.add(lastTheme);
     } else {
+      setTheme("dark");
       document.body.classList.add("dark");
     }
   }, []);
