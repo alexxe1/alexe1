@@ -12,7 +12,7 @@
   scroll-behavior: smooth;
 }
 
-.dark {
+.light {
   --black: #eeeeee;
   --gray: #aaaaaa;
   --white: #222831;
@@ -20,7 +20,7 @@
   background-color: var(--white);
 }
 
-.light {
+.dark {
   --black: #222831;
   --gray: #393e46;
   --white: #eeeeee;
