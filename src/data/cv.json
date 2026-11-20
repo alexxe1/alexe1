@@ -1,0 +1,138 @@
+{
+ "name": "Elías Alexei Torczuk",
+ "location": "San Justo, Buenos Aires",
+ "contact": {
+  "email": "eliastorczuk@outlook.com",
+  "linkedin": "linkedin.com/in/eliastorczuk",
+  "github": "github.com/alexxe1",
+  "web": "alexe1.vercel.app"
+ },
+ "es": {
+  "headline": "Estudiante de Ingeniería en Informática · Desarrollo de Software",
+  "about": "Estudiante avanzado de Ingeniería en Informática orientado al desarrollo de software, aplicaciones web y sistemas multiplataforma. Experiencia práctica construyendo proyectos de principio a fin, optimización de algoritmos y gestión de bases de datos. Interesado en aplicar nuevas tecnologías y herramientas de IA para resolver problemas reales.",
+  "interests": "Desarrollo Web y Full Stack · Software Multiplataforma / Desktop · Bases de Datos · Herramientas de IA para desarrollo",
+  "education": {
+   "title": "Ingeniería en Informática",
+   "school": "Universidad Nacional de La Matanza",
+   "period": "2023 – actualidad",
+   "text": "Llevo el 51% de la carrera. Algunas de las materias aprobadas incluyen Paradigmas de Programación, Bases de Datos, Arquitectura de Computadoras, entre otras."
+  },
+  "projects": [
+   {
+    "name": "Waka Waka Reloaded",
+    "meta": "TypeScript, JavaScript, CSS · Web",
+    "text": "Ingeniería inversa y migración. Proyecto en desarrollo para la restauración de un juego Flash legado (2010), reestructurando el cliente web para interactuar con un backend y API propios."
+   },
+   {
+    "name": "Noisepad",
+    "meta": "C#, Avalonia · Windows",
+    "text": "Aplicación open-source de soundboard con pipeline de procesamiento de audio en tiempo real: manipulación de pitch, grabación de voz y latencia mínima. Orientada a streamers, músicos y trabajadores remotos."
+   },
+   {
+    "name": "CHIP-8",
+    "meta": "C11, SDL2",
+    "text": "Intérprete/emulador de CHIP-8 en C puro: set original completo de 35 opcodes, 4 KB de memoria, pila y timers, pantalla monocromática de 64×32 y zumbador de onda cuadrada, con gráficos, entrada y audio sobre SDL2."
+   },
+   {
+    "name": "Home Server",
+    "meta": "Ubuntu Server, Linux, Docker, Bash",
+    "text": "Administración de servidor Linux auto hospedado con despliegue de servicios mediante Docker, gestión de redes, usuarios, accesos remotos y políticas de copias de seguridad."
+   },
+   {
+    "name": "Krypto",
+    "meta": "C#, Unity · Windows, Mac, Linux, Android",
+    "text": "Juego de lógica basado en combinatoria de cartas y operaciones matemáticas. Disponible en cuatro plataformas, con optimización de rendimiento y controles táctiles para Android."
+   }
+  ],
+  "tech": {
+   "languages": "C# · C · Java · SQL · JavaScript · TypeScript · Python",
+   "frameworks": "Unity · MonoGame · SDL2 · Avalonia",
+   "tools": "Git · JUnit · Docker · Linux (Ubuntu Server) · SSH"
+  },
+  "languages": [
+   {
+    "name": "Inglés",
+    "level": "Cambridge English First (C1)"
+   },
+   {
+    "name": "Español",
+    "level": "Nativo"
+   }
+  ],
+  "labels": {
+   "about": "Sobre mí",
+   "interests": "Áreas de interés",
+   "education": "Educación",
+   "projects": "Proyectos personales",
+   "tech": "Tecnologías",
+   "languages": "Idiomas",
+   "langs": "Lenguajes",
+   "frameworks": "Frameworks",
+   "tools": "Herramientas"
+  }
+ },
+ "en": {
+  "headline": "Computer Engineering Student · Software Development",
+  "about": "Advanced Computer Engineering student focused on software development, web applications and cross-platform systems. Hands-on experience building projects end to end, optimizing algorithms and managing databases. Interested in applying new technologies and AI tools to solve real-world problems.",
+  "interests": "Web and Full Stack Development · Cross-platform / Desktop Software · Databases · AI Tools for development",
+  "education": {
+   "title": "Computer Engineering",
+   "school": "National University of La Matanza",
+   "period": "2023 – present",
+   "text": "I have completed 51% of the degree. Some of the approved courses include Programming Paradigms, Databases and Computer Architecture, among others."
+  },
+  "projects": [
+   {
+    "name": "Waka Waka Reloaded",
+    "meta": "TypeScript, JavaScript, CSS · Web",
+    "text": "Reverse engineering and migration. In-development project to restore a legacy Flash game (2010), restructuring the web client to work with a custom backend and API."
+   },
+   {
+    "name": "Noisepad",
+    "meta": "C#, Avalonia · Windows",
+    "text": "Open-source soundboard application with a real-time audio processing pipeline: pitch shifting, voice recording and minimal latency. Aimed at streamers, musicians and remote workers."
+   },
+   {
+    "name": "CHIP-8",
+    "meta": "C11, SDL2",
+    "text": "CHIP-8 interpreter/emulator in pure C: complete original 35-opcode instruction set, 4 KB of memory, stack and timers, 64×32 monochrome display and a square-wave buzzer, with graphics, input and audio on SDL2."
+   },
+   {
+    "name": "Home Server",
+    "meta": "Ubuntu Server, Linux, Docker, Bash",
+    "text": "Administration of a self-hosted Linux server, deploying services with Docker and managing networking, users, remote access and backup policies."
+   },
+   {
+    "name": "Krypto",
+    "meta": "C#, Unity · Windows, Mac, Linux, Android",
+    "text": "Logic game based on card combinatorics and math operations. Available on four platforms, with performance optimization and touch controls for Android."
+   }
+  ],
+  "tech": {
+   "languages": "C# · C · Java · SQL · JavaScript · TypeScript · Python",
+   "frameworks": "Unity · MonoGame · SDL2 · Avalonia",
+   "tools": "Git · JUnit · Docker · Linux (Ubuntu Server) · SSH"
+  },
+  "languages": [
+   {
+    "name": "English",
+    "level": "Cambridge English First (C1)"
+   },
+   {
+    "name": "Spanish",
+    "level": "Native"
+   }
+  ],
+  "labels": {
+   "about": "About me",
+   "interests": "Areas of interest",
+   "education": "Education",
+   "projects": "Personal projects",
+   "tech": "Technologies",
+   "languages": "Languages",
+   "langs": "Languages",
+   "frameworks": "Frameworks",
+   "tools": "Tools"
+  }
+ }
+}

@@ -300,7 +300,79 @@ function maze(k: Kit): IconRig {
   });
 }
 
-const BUILDERS: Record<IconId, (k: Kit) => IconRig> = { krypto, tnp, noisepad, waka, assetly, bda, elifest, life, maze };
+/* ------------------------------ CHIP-8: chip con pantalla de píxeles jugando Pong ------------------------------ */
+function chip8(k: Kit): IconRig {
+  const W = 16, H = 8;
+  const board = k.group();
+  board.rotation.x = -0.2;
+  board.scale.setScalar(0.88); // con las patas mide ~2.2: lo achicamos para que entre en la baldosa
+  // encapsulado + parte trasera más oscura
+  k.mesh(box(1.8, 1.3, 0.22), '#1c2030', { parent: board });
+  k.mesh(box(1.84, 1.34, 0.05), '#0f121b', { parent: board, pos: [0, 0, -0.08] });
+  // 12 patas doradas (6 por lado)
+  for (const side of [-1, 1])
+    for (let i = 0; i < 6; i++) k.mesh(box(0.22, 0.09, 0.06), '#d8c46a', { parent: board, pos: [side * 0.99, (i - 2.5) * 0.21, -0.02] });
+  // muesca de orientación + LED
+  k.mesh(cyl(0.1, 0.1, 0.03, 10), '#0a0c12', { parent: board, pos: [0, 0.52, 0.115], rot: [Math.PI / 2, 0, 0] });
+  const led = k.mesh(new THREE.IcosahedronGeometry(0.045, 0), '#5dff9a', { parent: board, pos: [0.72, 0.52, 0.13] });
+  // pantalla 16x8 de píxeles (instanciada): las celdas nacen sobre el bisel y sólo crecen hacia el frente
+  k.mesh(box(1.4, 0.78, 0.03), '#06130c', { parent: board, pos: [0, -0.06, 0.115] });
+  const cellGeo = paint(box(0.07, 0.07, 0.07), '#ffffff', 0.04);
+  cellGeo.translate(0, 0, 0.035);
+  k.geos.push(cellGeo);
+  const inst = new THREE.InstancedMesh(cellGeo, k.mat, W * H);
+  inst.position.set(0, -0.06, 0.13);
+  board.add(inst);
+  const dummy = new THREE.Object3D();
+  const on = new THREE.Color('#5dff9a'), off = new THREE.Color('#0f3320');
+  const cells = new Uint8Array(W * H);
+  // Pong: paletas en los bordes, línea central y una pelota que rebota
+  let bx = 6, by = 2, vx = 1, vy = 1;
+  const py = [3, 4];
+  const draw = () => {
+    cells.fill(0);
+    for (let y = 0; y < H; y += 2) cells[y * W + W / 2] = 1;
+    for (let d = -1; d <= 1; d++) {
+      if (py[0] + d >= 0 && py[0] + d < H) cells[(py[0] + d) * W] = 1;
+      if (py[1] + d >= 0 && py[1] + d < H) cells[(py[1] + d) * W + W - 1] = 1;
+    }
+    cells[by * W + bx] = 1;
+    for (let y = 0; y < H; y++)
+      for (let x = 0; x < W; x++) {
+        const i = y * W + x;
+        dummy.position.set((x - (W - 1) / 2) * 0.082, ((H - 1) / 2 - y) * 0.082, 0);
+        dummy.scale.set(1, 1, cells[i] ? 1 : 0.12);
+        dummy.updateMatrix();
+        inst.setMatrixAt(i, dummy.matrix);
+        inst.setColorAt(i, cells[i] ? on : off);
+      }
+    inst.instanceMatrix.needsUpdate = true;
+    if (inst.instanceColor) inst.instanceColor.needsUpdate = true;
+  };
+  let tick = 0;
+  const step = () => {
+    bx += vx; by += vy;
+    if (by <= 0) { by = 0; vy = 1; }
+    if (by >= H - 1) { by = H - 1; vy = -1; }
+    if (bx <= 1) { bx = 1; vx = 1; }
+    if (bx >= W - 2) { bx = W - 2; vx = -1; }
+    tick++;
+    py[0] = Math.min(H - 2, Math.max(1, py[0] + Math.sign(by - py[0])));
+    if (tick % 2 === 0) py[1] = Math.min(H - 2, Math.max(1, py[1] + Math.sign(by - py[1])));
+  };
+  draw();
+  let acc = 0;
+  return k.rig((t, kk, dt) => {
+    if (kk > 0.5) {
+      acc += dt;
+      if (acc > 0.085) { acc = 0; step(); draw(); }
+    }
+    led.scale.setScalar(Math.sin(t * 5) > 0 ? 1.3 : 0.6);
+    board.rotation.x = -0.2 + Math.sin(t * 0.9) * 0.06;
+  });
+}
+
+const BUILDERS: Record<IconId, (k: Kit) => IconRig> = { krypto, tnp, noisepad, waka, assetly, bda, elifest, life, maze, chip8 };
 
 export function buildIcon(id: IconId, mat: THREE.Material, matDouble: THREE.Material): IconRig {
   return BUILDERS[id](new Kit(mat, matDouble));

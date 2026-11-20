@@ -1,6 +1,6 @@
 import type { Lang } from '../store';
 
-export type IconId = 'krypto' | 'tnp' | 'noisepad' | 'waka' | 'assetly' | 'bda' | 'elifest' | 'life' | 'maze';
+export type IconId = 'krypto' | 'tnp' | 'noisepad' | 'waka' | 'assetly' | 'bda' | 'elifest' | 'life' | 'maze' | 'chip8';
 export type Status = 'live' | 'wip' | 'offline' | 'academic';
 type L = Record<Lang, string>;
 
@@ -96,6 +96,24 @@ export const projects: Project[] = [
       en: 'Open-source soundboard app with a real-time audio processing pipeline: pitch shifting, voice recording, audio reversal and minimal latency. Aimed at streamers, musicians and remote workers.',
     },
     repo: `https://github.com/${GITHUB_USER}/Noisepad`,
+  },
+  {
+    id: 'chip8',
+    title: 'CHIP-8',
+    icon: 'chip8',
+    date: '2026/11',
+    sizeKB: 288,
+    status: 'live',
+    tags: ['C11', 'SDL2', 'Make'],
+    short: {
+      es: 'Intérprete/emulador de CHIP-8 en C puro: gráficos, entrada y audio con SDL2.',
+      en: 'CHIP-8 interpreter/emulator in pure C: graphics, input and audio with SDL2.',
+    },
+    long: {
+      es: 'Intérprete de CHIP-8 escrito en C11 con SDL2 para gráficos, entrada y audio. Implementa el set original completo de 35 opcodes, con 4 KB de memoria, 16 registros de 8 bits, pila y timers de delay y de sonido. La pantalla monocromática de 64×32 se escala con texturas streaming de SDL2, el teclado hexadecimal de 16 teclas se mapea al lado izquierdo del QWERTY y el timer de sonido dispara un zumbador de onda cuadrada de 440 Hz. Se compila con gcc y make y se usa con ./chip8 roms/pong.ch8.',
+      en: 'CHIP-8 interpreter written in C11 using SDL2 for graphics, input and audio. It implements the full original 35-opcode instruction set, with 4 KB of memory, 16 8-bit registers, a stack and delay and sound timers. The 64×32 monochrome display is scaled through SDL2 streaming textures, the 16-key hexadecimal keypad is mapped to the left side of a QWERTY keyboard and the sound timer drives a 440 Hz square-wave buzzer. Built with gcc and make, run with ./chip8 roms/pong.ch8.',
+    },
+    repo: `https://github.com/${GITHUB_USER}/Chip-8`,
   },
   {
     id: 'waka',

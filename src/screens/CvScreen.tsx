@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Download, FileText } from 'lucide-react';
-import { cv } from '../data/cv';
+import { cvBase, cvLocale, cvPdf } from '../data/cv';
 import { useStore } from '../store';
 import { useT } from '../i18n';
 import { sfx } from '../lib/audio';
@@ -11,14 +11,16 @@ import { TopBar } from '../components/Chrome';
 /** CV armado desde datos (src/data/cv.ts) con dos versiones y descarga del PDF correspondiente. */
 export function CvScreen() {
   const t = useT();
+  const lang = useStore((s) => s.lang);
+  const cv = cvLocale(lang);
   const go = useStore((s) => s.go);
   const body = useRef<HTMLDivElement>(null);
 
   const download = () => {
     sfx.confirm();
     const a = document.createElement('a');
-    a.href = cv.pdf;
-    a.download = cv.pdf.split('/').pop() ?? 'cv.pdf';
+    a.href = cvPdf[lang];
+    a.download = cvPdf[lang].split('/').pop() ?? 'cv.pdf';
     a.click();
   };
 
@@ -46,9 +48,9 @@ export function CvScreen() {
         </div>
 
         <div ref={body} className="screen-in ps-panel-dark pointer-events-auto flex-1 overflow-y-auto px-[1.8rem] pb-[1.6rem] pt-[1.2rem] text-[1.08rem] leading-snug">
-          <div className="text-[2rem] font-semibold leading-none">{cv.name}</div>
+          <div className="text-[2rem] font-semibold leading-none">{cvBase.name}</div>
           <div className="mt-[0.35rem] text-sky-200">{cv.headline}</div>
-          <div className="text-[0.95rem] text-sky-100/55">{cv.location}</div>
+          <div className="text-[0.95rem] text-sky-100/55">{cvBase.location}</div>
 
           <H>{t('cv.about')}</H>
           <p>{cv.about}</p>

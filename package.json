@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "mock:commits": "node scripts/generate-mock-commits.mjs"
+    "mock:commits": "node scripts/generate-mock-commits.mjs",
+    "build:cv": "python3 scripts/build-cv-pdf.py"
   },
   "dependencies": {
     "@fontsource/fira-sans-condensed": "^5.1.0",
