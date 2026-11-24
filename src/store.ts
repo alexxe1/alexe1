@@ -30,6 +30,7 @@ interface State {
   menuIndex: number;
   projView: ProjView;
   curtain: boolean; // telón negro que se desvanece al pasar de la intro al menú
+  egg: boolean; // en este arranque toca el easter egg (RSOD)
   go: (s: Screen) => void;
   setLang: (l: Lang) => void;
   toggleCrt: () => void;
@@ -39,6 +40,7 @@ interface State {
   setMenuIndex: (i: number) => void;
   setProjView: (v: ProjView) => void;
   setCurtain: (v: boolean) => void;
+  setEgg: (v: boolean) => void;
 }
 
 const browserLang = (): Lang => (navigator.language?.toLowerCase().startsWith('en') ? 'en' : 'es');
@@ -53,6 +55,7 @@ export const useStore = create<State>((set, get) => ({
   menuIndex: 0,
   projView: 'grid',
   curtain: false,
+  egg: false,
   go: (screen) => set({ screen }),
   setLang: (lang) => {
     write('alexe1.lang', lang);
@@ -73,4 +76,5 @@ export const useStore = create<State>((set, get) => ({
   setMenuIndex: (menuIndex) => set({ menuIndex }),
   setProjView: (projView) => set({ projView }),
   setCurtain: (curtain) => set({ curtain }),
+  setEgg: (egg) => set({ egg }),
 }));

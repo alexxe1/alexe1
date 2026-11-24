@@ -3,7 +3,10 @@ import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import type { CommitData } from '../lib/commits';
 import { bootDurations, sfx } from '../lib/audio';
+import { EGG_BLACK_SECONDS } from '../config/easter';
+import { useStore } from '../store';
 import { GlowPoints } from './GlowPoints';
+import { WispTrails } from './WispTrails';
 
 /**
  * Intro al estilo del arranque de PS2, sincronizada con ps2_startup.mp3 (su duración manda):
@@ -11,6 +14,9 @@ import { GlowPoints } from './GlowPoints';
  *   2) avance cada vez más rápido hacia el CENTRO de la "ciudad", entrando por la avenida central;
  *      mientras tanto unas pocas luces de colores recorren las torres;
  *   3) cuando está muy cerca, fundido a negro (lo resuelve el DOM) y, ~1 s después, aparece el logo.
+ *
+ * Easter egg (ver config/easter.ts): el recorrido es idéntico (así coincide con el audio). La diferencia es que
+ * la pantalla negra dura EGG_BLACK_SECONDS y después aparece el RSOD en vez del logo.
  */
 const FALLBACK_DURATION = 10.24;
 const SP = 1.25; // separación entre torres
@@ -33,17 +39,25 @@ function towerPosition(week: number, weekday: number) {
   return { x: (col - 13) * SP, z: (row - 7) * SP };
 }
 
+/** Tiempos de la intro (s). Iguales con y sin easter egg; el egg sólo alarga la pantalla negra final. */
+export interface Timeline { D: number; base: number; dashStart: number; dashLen: number; end: number; egg: boolean; blackSeconds: number }
+export function makeTimeline(D: number, egg: boolean): Timeline {
+  const base = Math.min(DASH_START, 0.8 * D); // si el audio fuera más corto, el dash arranca al 80%
+  const dashLen = D - base;
+  const dashStart = base;
+  return { D, base, dashStart, dashLen, end: dashStart + dashLen, egg, blackSeconds: egg ? EGG_BLACK_SECONDS : 1.1 };
+}
+
 /**
  * Trayectoria de cámara: siempre mirando al centro de la ciudad, desde el lado +z (así las semanas
  * corren de izquierda a derecha y el campo queda en horizontal). Se acerca por una recta que baja.
  */
-function cameraPath(t: number, D: number, out: { pos: THREE.Vector3; fov: number; a: number }) {
-  const tf = Math.min(DASH_START, 0.8 * D); // si el audio fuera más corto, el dash arranca al 80%
-  const u1 = clamp01(t / tf);
-  const u2 = clamp01((t - tf) / (D - tf));
+export function cameraPath(t: number, tl: Timeline, out: { pos: THREE.Vector3; fov: number; a: number }) {
+  const u2 = clamp01((t - tl.dashStart) / tl.dashLen);
   const a = 0.12 * u2 + 0.88 * Math.pow(u2, 2.2); // el dash arranca a la velocidad de la aproximación y se dispara hacia el final
   let dist: number, elev: number;
-  if (t < tf) {
+  if (t < tl.dashStart) {
+    const u1 = clamp01(t / tl.base);
     dist = 37 - 9 * u1; // todo el campo a la vista, muy despacio
     elev = 70 - 6 * u1;
   } else {
@@ -63,79 +77,12 @@ const WISPS = [
   { color: '#3bff9d', rx: 15, rz: 8.5, y: 3.5, amp: 2.0, w: 0.5, ph: 4.0, bob: 1.1 },
   { color: '#3ba7ff', rx: 11, rz: 6.5, y: 5.5, amp: 3.0, w: -0.7, ph: 5.3, bob: 1.5 },
 ];
-const TRAIL = 18;
-const TRAIL_DT = 0.05;
+export const WISP_COLORS = WISPS.map((w) => w.color);
 
 function wispAt(i: number, tau: number, out: THREE.Vector3) {
   const w = WISPS[i];
   const ang = w.ph + tau * w.w;
-  return out.set(Math.cos(ang) * w.rx, w.y + Math.sin(tau * w.bob + w.ph) * w.amp, Math.sin(ang) * w.rz);
-}
-
-function Wisps({ timeRef }: { timeRef: { current: { t: number; D: number } } }) {
-  const total = WISPS.length * TRAIL;
-  const { geo, mat, pos } = useMemo(() => {
-    const pos = new Float32Array(total * 3);
-    const size = new Float32Array(total);
-    const alpha = new Float32Array(total);
-    const col = new Float32Array(total * 3);
-    WISPS.forEach((w, i) => {
-      const c = new THREE.Color(w.color);
-      for (let k = 0; k < TRAIL; k++) {
-        const j = i * TRAIL + k;
-        const f = k / (TRAIL - 1);
-        size[j] = 1.15 * (1 - 0.82 * f);
-        alpha[j] = Math.pow(1 - f, 1.6);
-        col.set([c.r, c.g, c.b], j * 3);
-      }
-    });
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3).setUsage(THREE.DynamicDrawUsage));
-    geo.setAttribute('aSize', new THREE.BufferAttribute(size, 1));
-    geo.setAttribute('aAlpha', new THREE.BufferAttribute(alpha, 1));
-    geo.setAttribute('aColor', new THREE.BufferAttribute(col, 3));
-    const mat = new THREE.ShaderMaterial({
-      transparent: true,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-      uniforms: { uScale: { value: 600 }, uOpacity: { value: 0 } },
-      vertexShader: `
-        uniform float uScale; attribute float aSize; attribute float aAlpha; attribute vec3 aColor;
-        varying vec3 vC; varying float vA;
-        void main(){
-          vec4 mv = modelViewMatrix * vec4(position, 1.0);
-          gl_Position = projectionMatrix * mv;
-          gl_PointSize = aSize * uScale / max(0.1, -mv.z);
-          vC = aColor; vA = aAlpha;
-        }`,
-      fragmentShader: `
-        uniform float uOpacity; varying vec3 vC; varying float vA;
-        void main(){
-          float d = length(gl_PointCoord - 0.5) * 2.0;
-          if (d > 1.0) discard;
-          float core = pow(1.0 - d, 2.4);
-          gl_FragColor = vec4(mix(vC, vec3(1.0), core * 0.55), (core + 0.25 * (1.0 - d)) * vA * uOpacity);
-        }`,
-    });
-    return { geo, mat, pos };
-  }, [total]);
-  useEffect(() => () => { geo.dispose(); mat.dispose(); }, [geo, mat]);
-  const v = useMemo(() => new THREE.Vector3(), []);
-
-  useFrame((state) => {
-    const { t, D } = timeRef.current;
-    const warp = 1 + 0.8 * (t / D); // las luces se aceleran un poco junto con la cámara
-    for (let i = 0; i < WISPS.length; i++)
-      for (let k = 0; k < TRAIL; k++) {
-        wispAt(i, (t - k * TRAIL_DT) * warp, v);
-        pos.set([v.x, v.y, v.z], (i * TRAIL + k) * 3);
-      }
-    geo.attributes.position.needsUpdate = true;
-    mat.uniforms.uOpacity.value = smooth(0.18 * D, 0.4 * D, t) * (1 - smooth(D - 0.45, D - 0.05, t));
-    const cam = state.camera as THREE.PerspectiveCamera;
-    mat.uniforms.uScale.value = (state.size.height * state.viewport.dpr) / (2 * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2));
-  });
-  return <points geometry={geo} material={mat} frustumCulled={false} />;
+  out.set(Math.cos(ang) * w.rx, w.y + Math.sin(tau * w.bob + w.ph) * w.amp, Math.sin(ang) * w.rz);
 }
 
 const BEAMS = [
@@ -195,13 +142,14 @@ function Beam({ color, phase, x, z }: { color: string; phase: number; x: number;
 
 interface Props {
   data: CommitData;
-  onPhase: (p: 'black' | 'logo') => void;
+  onPhase: (p: 'black' | 'logo' | 'rsod') => void;
 }
 
 export function IntroScene({ data, onPhase }: Props) {
   const body = useRef<THREE.InstancedMesh>(null);
   const caps = useRef<THREE.InstancedMesh>(null);
-  const timeRef = useRef({ t: 0, D: FALLBACK_DURATION });
+  const timeRef = useRef({ t: 0, D: FALLBACK_DURATION, end: FALLBACK_DURATION });
+  const tlRef = useRef<Timeline>(makeTimeline(FALLBACK_DURATION, false));
   const [done, setDone] = useState(false);
   const st = useRef({ t0: -1, D: FALLBACK_DURATION, black: false, logo: false, laidOut: false });
   const dummy = useMemo(() => new THREE.Object3D(), []);
@@ -278,13 +226,15 @@ export function IntroScene({ data, onPhase }: Props) {
     if (s.t0 < 0) {
       s.t0 = state.clock.elapsedTime;
       s.D = bootDurations().startup ?? FALLBACK_DURATION;
+      tlRef.current = makeTimeline(s.D, useStore.getState().egg);
       sfx.bootStart(); // arranca ps2_startup.mp3 junto con el primer frame
     }
     const t = state.clock.elapsedTime - s.t0;
-    const D = s.D;
+    const tl = tlRef.current;
+    const end = tl.end;
 
     /* ---- Cámara ---- */
-    cameraPath(t, D, path);
+    cameraPath(t, tl, path);
     const cam = state.camera as THREE.PerspectiveCamera;
     cam.position.copy(path.pos);
     cam.lookAt(CENTER);
@@ -295,16 +245,18 @@ export function IntroScene({ data, onPhase }: Props) {
     /* ---- Torres ---- */
     if (t < RISE_SECONDS + 0.1) layout(t);
     else if (!s.laidOut) { layout(10); s.laidOut = true; }
-    const bright = 1 + 1.3 * smooth(D - 2.6, D - 0.5, t);
+    const bright = 1 + 1.3 * smooth(end - 2.6, end - 0.5, t);
     bodyMat.color.setScalar(bright);
     capMat.color.setScalar(bright);
 
     timeRef.current.t = t;
-    timeRef.current.D = D;
+    timeRef.current.D = tl.D;
+    timeRef.current.end = end;
 
     /* ---- Fases (el DOM hace el fundido a negro y el logo) ---- */
-    if (!s.black && t >= D - 0.45) { s.black = true; onPhase('black'); }
-    if (!s.logo && t >= D + 0.65) { s.logo = true; onPhase('logo'); setDone(true); } // ~1 s en negro antes del logo
+    if (!s.black && t >= end - 0.45) { s.black = true; onPhase('black'); }
+    // La pantalla negra empieza en end - 0.45. Normal: ~1 s en negro antes del logo. Easter egg: EGG_BLACK_SECONDS antes del RSOD.
+    if (!s.logo && t >= end - 0.45 + tl.blackSeconds) { s.logo = true; onPhase(tl.egg ? 'rsod' : 'logo'); setDone(true); }
   });
 
   if (done) return null;
@@ -321,7 +273,18 @@ export function IntroScene({ data, onPhase }: Props) {
       <group position={[0, 14, 0]}>
         <GlowPoints count={170} mode="drift" colors={['#7fb0ff', '#5fe3ff', '#ffffff']} size={[0.06, 0.18]} box={[44, 34, 26]} opacity={0.5} seed={19} />
       </group>
-      <Wisps timeRef={timeRef} />
+      <WispTrails
+        colors={WISP_COLORS}
+        at={wispAt}
+        state={() => {
+          const { t, D, end } = timeRef.current;
+          return {
+            t,
+            warp: 1 + 0.8 * clamp01(t / D), // las luces se aceleran un poco junto con la cámara 
+            opacity: smooth(0.18 * D, 0.4 * D, t) * (1 - smooth(end - 0.45, end - 0.05, t)),
+          };
+        }}
+      />
     </>
   );
 }

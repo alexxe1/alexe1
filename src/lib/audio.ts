@@ -124,8 +124,8 @@ let lastMove = 0;
 let bootPad: { gain: GainNode; oscs: OscillatorNode[] } | null = null;
 
 /* ---- Audios de arranque (mp3 propios, con reemplazo sintetizado si faltan) ---- */
-const rawBoot: Partial<Record<'startup' | 'logo', ArrayBuffer>> = {};
-const bootBuf: Partial<Record<'startup' | 'logo', AudioBuffer>> = {};
+const rawBoot: Partial<Record<'startup' | 'logo' | 'rsod', ArrayBuffer>> = {};
+const bootBuf: Partial<Record<'startup' | 'logo' | 'rsod', AudioBuffer>> = {};
 let bootSrc: { src: AudioBufferSourceNode; gain: GainNode } | null = null;
 
 /** Descarga los mp3 apenas carga la página (no necesita AudioContext ni gesto del usuario). */
@@ -158,8 +158,22 @@ export async function decodeBootAudio(): Promise<void> {
   );
 }
 
+/** Intenta cargar el sonido opcional del RSOD (public/audio/rsod.mp3). Si no existe, se usa el sintetizado. */
+export async function loadRsodAudio(): Promise<void> {
+  if (!ctx || bootBuf.rsod) return;
+  try {
+    const r = await fetch(BOOT_AUDIO.rsod);
+    if (!r.ok) return;
+    bootBuf.rsod = await ctx.decodeAudioData(await r.arrayBuffer());
+  } catch {
+    /* sin archivo: drone sintetizado */
+  }
+}
+
+let rsodNodes: { stop: () => void } | null = null;
+
 /** Duración (s) de los audios de arranque, o null si no se cargaron. */
-export const bootDurations = () => ({ startup: bootBuf.startup?.duration ?? null, logo: bootBuf.logo?.duration ?? null });
+export const bootDurations = () => ({ startup: bootBuf.startup?.duration ?? null, logo: bootBuf.logo?.duration ?? null, rsod: bootBuf.rsod?.duration ?? null });
 
 function playBoot(k: 'startup' | 'logo'): boolean {
   const buf = bootBuf[k];
@@ -307,9 +321,128 @@ export const sfx = {
     for (let i = 0; i < 12; i++) bell(NOTE(86 + Math.floor(Math.random() * 12)), t + 0.4 + Math.random() * 2.2, { dur: 1.4, gain: 0.04, send: 1 });
     drop(200, 2400, t, 0.8, 0.07);
   },
+  /** Easter egg RSOD: drone grave y disonante, trémolo agudo en tritono, respiración y susurros cristalinos. */
+  rsodStart() {
+    if (!ctx || rsodNodes) return;
+    const c = ctx;
+    const t = c.currentTime;
+    const master = c.createGain();
+    master.gain.setValueAtTime(0.0001, t);
+    master.gain.exponentialRampToValueAtTime(0.75, t + 2.2);
+    master.connect(sfxBus);
+    const rv = c.createGain();
+    rv.gain.value = 0.8;
+    master.connect(rv).connect(reverbIn);
+    const stops: (() => void)[] = [];
+    let timer = 0;
+    const file = bootBuf.rsod;
+    if (file) {
+      // audio propio (public/audio/rsod.mp3): suena UNA vez, entero y sin fundido de entrada;
+      // el RSOD dura lo que dura el audio (ver BootScreen)
+      master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(0.8, t);
+      rv.gain.value = 0; // tu audio suena tal cual, sin la reverb del resto de los efectos
+      const src = c.createBufferSource();
+      src.buffer = file;
+      src.connect(master);
+      src.start();
+      stops.push(() => src.stop());
+    } else {
+      const lp = c.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = 240;
+      lp.Q.value = 4;
+      lp.connect(master);
+      const lfo = c.createOscillator();
+      lfo.frequency.value = 0.13;
+      const lg = c.createGain();
+      lg.gain.value = 90;
+      lfo.connect(lg).connect(lp.frequency);
+      lfo.start(t);
+      stops.push(() => lfo.stop());
+      // La, Si♭, Mi y Mi grave: segundas menores y tritonos = incomodidad
+      [[55, 0.5], [58.27, 0.42], [82.41, 0.3], [41.2, 0.4]].forEach(([f, g], i) => {
+        const o = c.createOscillator();
+        o.type = 'sawtooth';
+        o.frequency.value = f;
+        o.detune.value = (i % 2 ? 1 : -1) * 9;
+        const vib = c.createOscillator();
+        vib.frequency.value = 0.35 + i * 0.11;
+        const vg = c.createGain();
+        vg.gain.value = 6;
+        vib.connect(vg).connect(o.detune);
+        vib.start(t);
+        const og = c.createGain();
+        og.gain.value = g * 0.35;
+        o.connect(og).connect(lp);
+        o.start(t);
+        stops.push(() => { o.stop(); vib.stop(); });
+      });
+      [466.16, 659.25].forEach((f) => {
+        const o = c.createOscillator();
+        o.type = 'sine';
+        o.frequency.value = f;
+        const gt = c.createGain();
+        gt.gain.value = 0.02;
+        const trem = c.createOscillator();
+        trem.frequency.value = 5.2;
+        const tg = c.createGain();
+        tg.gain.value = 0.015;
+        trem.connect(tg).connect(gt.gain);
+        o.connect(gt).connect(master);
+        o.start(t);
+        trem.start(t);
+        stops.push(() => { o.stop(); trem.stop(); });
+      });
+      // respiración: ruido filtrado con un vaivén lento
+      const nl = c.sampleRate * 2;
+      const nb = c.createBuffer(1, nl, c.sampleRate);
+      const nd = nb.getChannelData(0);
+      for (let i = 0; i < nl; i++) nd[i] = Math.random() * 2 - 1;
+      const ns = c.createBufferSource();
+      ns.buffer = nb;
+      ns.loop = true;
+      const bp = c.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.value = 700;
+      bp.Q.value = 1.2;
+      const ng = c.createGain();
+      ng.gain.value = 0.02;
+      const nlfo = c.createOscillator();
+      nlfo.frequency.value = 0.18;
+      const nlg = c.createGain();
+      nlg.gain.value = 0.018;
+      nlfo.connect(nlg).connect(ng.gain);
+      ns.connect(bp).connect(ng).connect(master);
+      ns.start(t);
+      nlfo.start(t);
+      stops.push(() => { ns.stop(); nlfo.stop(); });
+      // susurros: campanas desafinadas y gotas que caen, de vez en cuando
+      timer = window.setInterval(() => {
+        const now = c.currentTime;
+        drop(1400, 300, now, 1.2, 0.015);
+        bell(NOTE(70 + Math.floor(Math.random() * 6)), now + 0.3, { dur: 2.5, gain: 0.02, send: 1 });
+      }, 2600);
+    }
+    rsodNodes = {
+      stop() {
+        const now = c.currentTime;
+        master.gain.cancelScheduledValues(now);
+        master.gain.setValueAtTime(Math.max(master.gain.value, 0.0001), now);
+        master.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+        clearInterval(timer);
+        setTimeout(() => stops.forEach((f) => { try { f(); } catch { /* ya detenido */ } }), 1000);
+      },
+    };
+  },
+  rsodStop() {
+    rsodNodes?.stop();
+    rsodNodes = null;
+  },
   /** Corta el colchón del arranque (si el usuario saltea la intro). */
   bootStop() {
     if (!ctx) return;
+    sfx.rsodStop();
     const t = ctx.currentTime;
     if (bootSrc) {
       bootSrc.gain.gain.setTargetAtTime(0, t, 0.08);

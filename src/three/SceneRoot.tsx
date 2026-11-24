@@ -7,6 +7,7 @@ import { PowerScene } from './Ps2Model';
 import { IntroScene } from './IntroScene';
 import { Orbs } from './Orbs';
 import { MemoryCardScene } from './MemoryCardScene';
+import { RsodScene } from './RsodScene';
 
 const FOV: Record<Screen, number> = { power: 30, boot: 56, menu: 50, about: 50, cv: 50, contact: 50, projects: 32 };
 
@@ -26,12 +27,14 @@ function CameraSetup({ screen }: { screen: Screen }) {
 
 interface Props {
   commits: CommitData;
-  onPhase: (p: 'black' | 'logo') => void;
+  /** fase de la intro: 'rsod' muestra la escena del easter egg; 'logo' no renderiza nada (negro). */
+  bootPhase: 'fly' | 'black' | 'rsod' | 'logo';
+  onPhase: (p: 'black' | 'logo' | 'rsod') => void;
   onPower: () => void;
 }
 
 /** Un único <Canvas> persistente: cada pantalla monta/desmonta su escena (y libera sus recursos). */
-export function SceneRoot({ commits, onPhase, onPower }: Props) {
+export function SceneRoot({ commits, bootPhase, onPhase, onPower }: Props) {
   const screen = useStore((s) => s.screen);
   return (
     <Canvas
@@ -47,7 +50,8 @@ export function SceneRoot({ commits, onPhase, onPower }: Props) {
           <PowerScene onPower={onPower} />
         </Suspense>
       )}
-      {screen === 'boot' && <IntroScene data={commits} onPhase={onPhase} />}
+      {screen === 'boot' && (bootPhase === 'fly' || bootPhase === 'black') && <IntroScene data={commits} onPhase={onPhase} />}
+      {screen === 'boot' && bootPhase === 'rsod' && <RsodScene />}
       {(screen === 'menu' || screen === 'about' || screen === 'cv' || screen === 'contact') && <Orbs />}
       {screen === 'projects' && (
         <>

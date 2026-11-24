@@ -29,8 +29,15 @@ export const CROSSFADE_SECONDS = 4;
  *   public/audio/ps2_logo.mp3     → suena cuando aparece el logo + "alexe1" (~0,9 s).
  *
  * Si falta algún archivo, se usa un sonido sintetizado de reemplazo y la intro dura ~10 s.
+ *
+ *   public/audio/rsod.mp3         ← easter egg RSOD (~9 s); ver más abajo.
  */
 export const BOOT_AUDIO = {
   startup: './audio/ps2_startup.mp3',
   logo: './audio/ps2_logo.mp3',
+  /**
+   * Sonido del easter egg (RSOD): public/audio/rsod.mp3. Suena una vez y la pantalla dura lo que dura el audio.
+   * Si el archivo falta, se usa un drone creepy sintetizado (y el RSOD dura RSOD_SECONDS de config/easter.ts).
+   */
+  rsod: './audio/rsod.mp3',
 };

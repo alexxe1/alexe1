@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useStore } from './store';
-import { decodeBootAudio, initAudio, prefetchBootAudio, setMuted, sfx, startAmbient } from './lib/audio';
+import { decodeBootAudio, initAudio, loadRsodAudio, prefetchBootAudio, setMuted, sfx, startAmbient } from './lib/audio';
+import { decideEgg } from './lib/egg';
 import { preloadIconModels } from './three/icons';
 import { installInput } from './lib/input';
 import { loadCommits, mockCommits, type CommitData } from './lib/commits';
@@ -60,6 +61,9 @@ export default function App() {
     const s = useStore.getState();
     if (s.powering || s.screen !== 'power') return;
     initAudio(); // el gesto del usuario habilita el AudioContext
+    const egg = decideEgg(); // primera visita: nunca; después: chance (config/easter.ts)
+    s.setEgg(egg);
+    if (egg) void loadRsodAudio();
     const decoded = decodeBootAudio(); // decodifica ps2_startup / ps2_logo mientras se anima el encendido
     sfx.power();
     s.setPowering(true);
@@ -70,7 +74,7 @@ export default function App() {
     }, 1700);
   }, []);
 
-  const onPhase = useCallback((p: 'black' | 'logo') => setPhase(p), []);
+  const onPhase = useCallback((p: 'black' | 'logo' | 'rsod') => setPhase(p), []);
 
   return (
     <div className="fixed inset-0 grid place-items-center overflow-hidden bg-black">
@@ -78,11 +82,11 @@ export default function App() {
         className={`relative overflow-hidden bg-black ${crt ? 'crt-on' : ''}`}
         style={{ width: 'min(100vw, 133.3333vh)', height: 'min(75vw, 100vh)' }}
       >
-        <SceneRoot commits={commits} onPhase={onPhase} onPower={power} />
+        <SceneRoot commits={commits} bootPhase={phase} onPhase={onPhase} onPower={power} />
 
         <div className="pointer-events-none absolute inset-0 z-10 ps-ui">
           {screen === 'power' && <PowerScreen power={power} />}
-          {screen === 'boot' && <BootScreen phase={phase} />}
+          {screen === 'boot' && <BootScreen phase={phase} onPhase={setPhase} />}
           {screen === 'menu' && <MainMenu />}
           {screen === 'projects' && <ProjectsScreen />}
           {screen === 'about' && <AboutScreen commits={commits} />}

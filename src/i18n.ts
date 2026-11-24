@@ -4,6 +4,8 @@ const es = {
   'power.hint': 'Presioná POWER para encender',
   'power.button': 'POWER',
   'boot.skip': 'Saltar',
+  'rsod.line1': 'Por favor, inserte un contrato',
+  'rsod.line2': 'en formato Remoto o Híbrido.',
 
   'hint.select': 'Aceptar',
   'hint.back': 'Volver',
@@ -103,6 +105,8 @@ const en: Record<Key, string> = {
   'power.hint': 'Press POWER to start',
   'power.button': 'POWER',
   'boot.skip': 'Skip',
+  'rsod.line1': 'Please insert a Remote or Hybrid',
+  'rsod.line2': 'format contract.',
 
   'hint.select': 'Enter',
   'hint.back': 'Back',
